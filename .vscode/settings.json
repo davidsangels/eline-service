@@ -10,4 +10,8 @@
   "javascript.suggest.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "never",
   "javascript.validate.enable": false
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 21891cd843f81b87e2d8f77e03c4d245a4f28bdd
