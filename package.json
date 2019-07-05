@@ -1,15 +1,35 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "reviews-service",
+  "description": "> Project description",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {},
-  "dependencies": {},
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5"
+  },
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-good-place/reviews-service.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/the-good-place/reviews-service/issues"
+  },
+  "homepage": "https://github.com/the-good-place/reviews-service#readme"
 }
