@@ -7,7 +7,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "webpack"
+    "start": "webpack",
+    "seed": "node ./database/seed.js"
   },
   "dependencies": {
     "mysql": "^2.17.1",
