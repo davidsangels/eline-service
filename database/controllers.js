@@ -1,7 +1,6 @@
 const { Review } = require('./models.js')
 
 const getReviewsById = (id, callback) => {
-  console.log(id)
   Review.findAll({
     where: {
       idPlace: id

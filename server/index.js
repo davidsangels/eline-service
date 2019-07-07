@@ -7,8 +7,8 @@ app.use(express.static('public'))
 
 // GET /api/reviews/:placeId
 // Get all the reviews for a specific place.
-app.get('/api/reviews/:placeId', (req, res) => {
-  getReviewsById(req.params.placeId, (err, reviews) => {
+app.get('/api/reviews/:idPlace', (req, res) => {
+  getReviewsById(req.params.idPlace, (err, reviews) => {
     if(err){
       console.log(err)
     }
