@@ -1,8 +1,9 @@
 const faker = require('faker');
 const db = require('./index.js');
 const Sequelize = require('sequelize');
+const { sequelizeData } = require('../config.js');
 
-const sequelize = new Sequelize('infoPlace', 'root', '', {
+const sequelize = new Sequelize('infoPlace', sequelizeData.user, sequelizeData.password, {
   host: 'localhost',
   dialect: 'mysql',
   timestamps: false

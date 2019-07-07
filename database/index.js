@@ -1,11 +1,19 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
+const { mysqlData } = require('../config.js');
 
-var connection = mysql.createConnection({
-  user: 'root',
-  password: '',
-  database: 'infoPlace'
+const connection = mysql.createConnection({
+  user: mysqlData.user,
+  password: mysqlData.password,
+  host: 'localhost'
 });
 
-connection.connect();
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  connection.query("CREATE DATABASE infoPlace", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});
 
 module.exports = connection;
