@@ -7,9 +7,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "webpack",
-    "seed": "node ./database/seed.js",
-    "test": "jest"
+    "start": "nodemon server/index.js",
+    "seed": "node database/seed.js",
+    "test": "jest",
+    "dev-react": "webpack -d --watch"
   },
   "dependencies": {
     "express": "^4.17.1",
@@ -30,6 +31,7 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^6.0.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "nodemon": "^1.19.1",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },

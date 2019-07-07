@@ -1,7 +1,14 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const express = require('express')
+const app = express()
+const port = 3000
+const { getReviewsById } = require('../database/controllers.js')
 
-app.use(express.static('public'));
+app.use(express.static('public'))
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+// GET /api/reviews/:placeId
+// Get all the reviews for a specific place.
+app.get('/api/reviews/:placeId', (req, res) => {
+
+})
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
