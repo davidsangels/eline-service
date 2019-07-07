@@ -24,7 +24,7 @@ sequelize
 const Review = Sequelize.Model;
 
 Review.init(
-  // attributes
+  // attributes:
   {
     idPlace: {
       type: Sequelize.INTEGER,
@@ -51,7 +51,7 @@ Review.init(
       allowNull: false
     }
   },
-  // options
+  // options:
   {
     sequelize,
     modelName: 'reviews'

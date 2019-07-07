@@ -1,7 +1,7 @@
 const { Review } = require('./models.js')
 const faker = require('faker')
 
-var createPlaceIds = function(){
+const createPlaceIds = function(){
   var placeIds = []
   for (var i = 0; i < 5; i++){
     placeIds.push(faker.random.number())

@@ -1,4 +1,4 @@
-const Review = require('./seed.js')
+const { Review } = require('./models.js')
 
 const getReviewsById = (id) => {
   // Review.findAll({
