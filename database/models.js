@@ -1,10 +1,9 @@
 const Sequelize = require('sequelize')
-const { sequelizeData } = require('../config.js')
 
 const sequelize = new Sequelize(
   'infoPlace',
-  sequelizeData.user,
-  sequelizeData.password,
+  'root',
+  'root',
   {
     host: 'localhost',
     dialect: 'mysql',

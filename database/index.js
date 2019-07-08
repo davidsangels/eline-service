@@ -1,9 +1,8 @@
 const mysql = require('mysql')
-const { mysqlData } = require('../config.js')
 
 const connection = mysql.createConnection({
-  user: mysqlData.user,
-  password: mysqlData.password,
+  user: 'root',
+  password: 'root',
   host: 'localhost'
 })
 
