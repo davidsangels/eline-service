@@ -5,6 +5,9 @@
 ## MAC files ##
 .DS_Store
 
+## Infos ##
+config.js
+
 ## NPM ##
 npm
 npm-debug.log

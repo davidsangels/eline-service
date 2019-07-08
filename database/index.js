@@ -1,11 +1,19 @@
-var mysql = require('mysql');
+const mysql = require('mysql')
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
   user: 'root',
-  password: '',
-  database: 'infoPlace'
-});
+  password: 'root',
+  host: 'localhost'
+})
 
-connection.connect();
+connection.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  connection.query("DROP DATABASE IF EXISTS infoPlace;");
+  connection.query("CREATE DATABASE infoPlace", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  })
+})
 
-module.exports = connection;
+module.exports = connection
