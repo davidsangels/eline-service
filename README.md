@@ -1,13 +1,13 @@
-# Project Name
+# Airbnb - The Good Place
 
-> Project description
+> Project description:
+This project is responsible to build a similar reviews session of an airbnb item page.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/the-good-place/related-listings
+  - https://github.com/the-good-place/Image-gallery
+  - https://github.com/the-good-place/keaton-service
 
 ## Table of Contents
 
@@ -32,8 +32,5 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 From within the root directory:
 
-```sh
-npm install -g webpack
-npm install
-```
-
+- After clonning this repo, command `npm install`.
+- To generate data in database, command `npm run seed`.
