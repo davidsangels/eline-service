@@ -1,7 +1,7 @@
 # Airbnb - The Good Place
 
 > Project description:
-This project is responsible to build a similar reviews session of an airbnb item page.
+This project is responsible to build a similar reviews session of Airbnb's item page.
 
 ## Related Projects
 
@@ -34,3 +34,4 @@ From within the root directory:
 
 - After clonning this repo, command `npm install`.
 - To generate data in database, command `npm run seed`.
+- To run tests for front-end (react components), command `npm run test`.
