@@ -1,13 +1,12 @@
 const Sequelize = require('sequelize')
 
 const sequelize = new Sequelize(
-  'infoPlace',
+  'airbnb',
   'root',
-  'root',
+  '',
   {
     host: 'localhost',
     dialect: 'mysql',
-    timestamps: false
   }
 )
 
@@ -53,10 +52,9 @@ Review.init(
   // options:
   {
     sequelize,
-    modelName: 'reviews'
+    modelName: 'reviews',
+    timestamps: false
   }
 );
 
-module.exports = {
-  Review
-}
+module.exports = Review
