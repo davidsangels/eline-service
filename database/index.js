@@ -1,19 +1,22 @@
-const mysql = require('mysql')
+const Sequelize = require('sequelize')
 
-const connection = mysql.createConnection({
-  user: 'root',
-  password: 'root',
-  host: 'localhost'
-})
+const sequelize = new Sequelize(
+  'airbnb',
+  'root',
+  '',
+  {
+    host: 'localhost',
+    dialect: 'mysql',
+  }
+)
 
-connection.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-  connection.query("DROP DATABASE IF EXISTS infoPlace;");
-  connection.query("CREATE DATABASE infoPlace", function (err, result) {
-    if (err) throw err;
-    console.log("Database created");
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.')
   })
-})
+  .catch(err => {
+    console.error('Unable to connect to the database:', err)
+  })
 
-module.exports = connection
+module.exports = sequelize;

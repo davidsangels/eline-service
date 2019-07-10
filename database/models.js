@@ -1,24 +1,5 @@
 const Sequelize = require('sequelize')
-
-const sequelize = new Sequelize(
-  'infoPlace',
-  'root',
-  'root',
-  {
-    host: 'localhost',
-    dialect: 'mysql',
-    timestamps: false
-  }
-)
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.')
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err)
-  })
+const sequelize = require('./index.js')
 
 const Review = Sequelize.Model;
 
@@ -53,10 +34,9 @@ Review.init(
   // options:
   {
     sequelize,
-    modelName: 'reviews'
+    modelName: 'reviews',
+    timestamps: false
   }
 );
 
-module.exports = {
-  Review
-}
+module.exports = Review
