@@ -6,7 +6,7 @@ const Pagination = ({numBtn, activeBtn}) => {
   var buttons=[];
   for(var i = 1; i <= numBtn; i++){
     buttons.push(
-      <button value={i}>
+      <button value={i} key={i}>
         {i}
       </button>
     )
