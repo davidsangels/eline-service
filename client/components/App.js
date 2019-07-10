@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './Search';
-import Rating from './Rating'
+import Rating from './Rating';
+import Attributes from './Attributes';
 
 class App extends React.Component {
   constructor(props){
@@ -15,6 +16,8 @@ class App extends React.Component {
           <Rating />
           <Search />
         </div>
+        <hr></hr>
+        <Attributes />
       </div>
     )
   }
