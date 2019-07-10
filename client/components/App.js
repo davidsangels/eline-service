@@ -3,6 +3,7 @@ import Search from './Search';
 import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
+import {mockData} from '../sampleData';
 
 class App extends React.Component {
   constructor(props){
@@ -19,7 +20,7 @@ class App extends React.Component {
         </div>
         <hr />
         <Attributes />
-        <Reviews />
+        <Reviews reviews={mockData} />
       </div>
     )
   }

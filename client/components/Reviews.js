@@ -1,11 +1,10 @@
 import React from 'react';
-import {mockData} from '../sampleData';
 import Review from './Review';
 
-const Reviews = () => {
+const Reviews = ({reviews}) => {
   return (
     <div>
-      {mockData.map(review => (
+      {reviews.map(review => (
         <Review review={review} key={review.id} />
       ))}
     </div>
