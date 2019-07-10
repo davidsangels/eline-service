@@ -1,5 +1,6 @@
 import React from 'react';
 import Search from './Search';
+import Rating from './Rating'
 
 class App extends React.Component {
   constructor(props){
@@ -11,7 +12,7 @@ class App extends React.Component {
       <div>
         <header>
           <h4>357 Reviews</h4>
-          <div>stars</div>
+          <Rating />
           <Search />
         </header>
       </div>
