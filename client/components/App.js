@@ -17,7 +17,7 @@ class App extends React.Component {
           <Rating />
           <Search />
         </div>
-        <hr></hr>
+        <hr />
         <Attributes />
         <Reviews />
       </div>
