@@ -10,11 +10,11 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <header>
+        <div style={{display: 'flex', alignItems: 'center'}}>
           <h4>357 Reviews</h4>
           <Rating />
           <Search />
-        </header>
+        </div>
       </div>
     )
   }
