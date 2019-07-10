@@ -1,4 +1,4 @@
-const { Review } = require('./models.js')
+const Review = require('./models.js')
 const faker = require('faker')
 
 const createPlaceIds = function(){

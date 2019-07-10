@@ -1,4 +1,4 @@
-const { Review } = require('./models.js')
+const Review = require('./models.js')
 
 const getReviewsById = (id, callback) => {
   Review.findAll({
