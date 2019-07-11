@@ -9,7 +9,7 @@ const Search = () => {
       // TODO: value will be received from App component
       // value="..."
     />
-  )
+  );
 };
 
 export default Search;

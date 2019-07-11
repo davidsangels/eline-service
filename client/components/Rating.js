@@ -10,7 +10,7 @@ const Rating = () => {
       <ion-icon name="star"></ion-icon>
       <ion-icon name="star"></ion-icon>
     </div>
-  )
+  );
 };
 
 export default Rating;

@@ -8,7 +8,7 @@ const Reviews = ({reviews}) => {
         <Review review={review} key={review.id} />
       ))}
     </div>
-  )
+  );
 };
 
 export default Reviews;

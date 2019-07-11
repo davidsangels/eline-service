@@ -20,7 +20,7 @@ const Attributes = () => {
         </div>
       ))}
     </div>
-  )
+  );
 };
 
 export default Attributes;

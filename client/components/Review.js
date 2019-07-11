@@ -9,7 +9,7 @@ const Review = ({review}) => {
       <p>{review.text}</p>
       <hr />
     </div>
-  )
+  );
 };
 
 export default Review;

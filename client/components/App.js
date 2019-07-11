@@ -6,17 +6,17 @@ import Reviews from './Reviews';
 import Pagination from './Pagination';
 import {mockData} from '../sampleData';
 
-const numBtn = Math.ceil(mockData.length/7);
+const numBtn = Math.ceil(mockData.length / 7);
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       activeBtn: 1
-    }
+    };
   }
 
-  render(){
+  render() {
     return (
       <div>
         <div style={{display: 'flex', alignItems: 'center'}}>
@@ -32,8 +32,8 @@ class App extends React.Component {
           activeBtn={this.state.activeBtn}
         />
       </div>
-    )
+    );
   }
-};
+}
 
 export default App;
