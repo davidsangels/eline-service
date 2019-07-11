@@ -17,8 +17,6 @@ class App extends React.Component {
   }
 
   render(){
-
-
     return (
       <div>
         <div style={{display: 'flex', alignItems: 'center'}}>
