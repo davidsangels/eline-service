@@ -89,7 +89,7 @@ class App extends React.Component {
               <Search />
             </div>
             <hr />
-            <Attributes />
+            <Attributes rating={ratingsByPlace}/>
             <Reviews reviews={mockData} />
             <Pagination
               numBtn={numBtn}
