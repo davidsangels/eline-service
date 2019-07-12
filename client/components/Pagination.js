@@ -1,27 +1,18 @@
 import React from 'react';
+import pagination from '../helpers/pagination.js'
 
 // max 7 reviews per page
-// TODO: make button to pass for next page
-const Pagination = ({numBtns, activeBtn, changePage}) => {
-  var buttons = [];
-  for (var i = 1; i <= numBtns; i++) {
-    buttons.push(
-      <button
-        type='button'
-        value={i}
-        key={i}
-        onClick={(e) => changePage(e.target.value, 'page')}
-      >{i}</button>
-    );
-  }
-
+const Pagination = ({
+  currentPage,
+  numBtns,
+}) => {
   return (
     <div>
-      {buttons}
+      {pagination(currentPage, numBtns)}
       <button
         type='button'
         value='next'
-        onClick={(e) => changePage(e.target.value, 'next')}
+        onClick={(e) => changePage(e.target.value)}
       >Next</button>
     </div>
   );

@@ -16,15 +16,13 @@ class App extends React.Component {
       places: [],
       reviewsByPlace: [],
       ratingsByPlace: [],
-      pagination: {
-        start: 0,
-        end: 7,
-        page: 1
-      }
+      currentPage: 1,
+      reviewsStart: 0,
+      reviewsEnd: 7
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
-    this.handleChangePage = this.handleChangePage.bind(this);
+    // this.handleChangePage = this.handleChangePage.bind(this);
   }
 
   componentDidMount(){
@@ -79,17 +77,39 @@ class App extends React.Component {
     })
   }
 
-  handleChangePage(value, typeBtn){
-    console.log(value, typeBtn)
-  }
+  // handleChangePage(value){
+  //   console.log(value)
+  //   const { page } =  this.state.pagination;
+  //   const { reviewsByPlace } = this.state;
+  //   const numBtns = Math.ceil(reviewsByPlace.length / 7)
+
+  //   if (value === 'next' && page < numBtns){
+  //     return this.setState(state => {
+  //       return {
+  //         pagination: {
+  //           start: state.pagination.start + 7,
+  //           end: state.pagination.end + 7,
+  //           page: state.pagination.page++
+  //         }
+  //       }
+  //     })
+  //   }
+  //   else {
+
+  //   }
+
+  // }
 
   render() {
     const {
       currentPlace,
       reviewsByPlace,
       ratingsByPlace,
-      pagination
+      currentPage,
+      reviewsStart,
+      reviewsEnd
     } = this.state;
+    const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     return (
       <div>
@@ -103,12 +123,13 @@ class App extends React.Component {
             <hr />
             <Attributes rating={ratingsByPlace}/>
             <Reviews
-              reviews={reviewsByPlace.slice(pagination.start, pagination.end)}
+              reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
             />
             <Pagination
-              numBtns={Math.ceil(reviewsByPlace.length / 7)}
-              activeBtn={this.state.activeBtn}
-              changePage={this.handleChangePage}
+              currentPage={currentPage}
+              numBtns={numBtns}
+              // activeBtn={this.state.activeBtn}
+              // changePage={this.handleChangePage}
             />
           </div>
         )}
