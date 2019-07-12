@@ -16,8 +16,10 @@ class App extends React.Component {
     this.state = {
       activeBtn: 1,
       currentPlace: null,
-      places: []
+      places: [],
+      reviewsByPlace: []
     };
+    this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
   }
 
   componentDidMount(){
@@ -42,10 +44,26 @@ class App extends React.Component {
         places: idPlaces
       })
     })
+    .done(() => {
+      this.getReviewsByPlace(this.state.currentPlace)
+    })
+  }
+
+  getReviewsByPlace(id){
+    $.ajax({
+      type: 'GET',
+      url: `/api/reviews/${id}`
+    })
+    .done(data => {
+      return this.setState({
+        reviewsByPlace: data
+      })
+    })
   }
 
   render() {
     const { currentPlace, places } = this.state;
+    console.log(this.state.reviewsByPlace)
 
     return (
       <div>
