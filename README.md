@@ -18,6 +18,8 @@ This project is responsible to build a similar reviews module of Airbnb's item p
 ## Usage
 
 > Some usage instructions
+This module works with specific idPlaces to be inserted in the url.
+You'll know which are them opening the console tab of your browser.
 
 ## Requirements
 
