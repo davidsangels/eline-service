@@ -10,6 +10,13 @@ const Pagination = ({
   const buttons = pagination(currentPage, numBtns)
   return (
     <div>
+      {currentPage !== 1 && (
+        <button
+          type='button'
+          value='before'
+          onClick={(e) => changePage(e.target.value)}
+        >Before</button>
+      )}
       {buttons.map(btn => (
         <button
           type='button'
@@ -18,11 +25,13 @@ const Pagination = ({
           onClick={(e) => changePage(e.target.value)}
         >{btn}</button>
       ))}
-      <button
-        type='button'
-        value='next'
-        // onClick={(e) => changePage(e.target.value)}
-      >Next</button>
+      {currentPage !== numBtns && (
+        <button
+          type='button'
+          value='next'
+          onClick={(e) => changePage(e.target.value)}
+        >Next</button>
+      )}
     </div>
   );
 };

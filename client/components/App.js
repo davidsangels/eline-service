@@ -79,14 +79,31 @@ class App extends React.Component {
 
   handleChangePage(value){
     const { currentPage, reviewsByPlace } = this.state;
+    const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
-    return this.setState({
-      currentPage: value
-    })
-
+    if(value === 'next' && currentPage < numBtns){
+      return this.setState(state => {
+        return {
+          currentPage: state.currentPage + 1
+        }
+      })
+    }
+    else if (value === 'before' && currentPage >= 1){
+      return this.setState(state => {
+        return {
+          currentPage: state.currentPage - 1
+        }
+      })
+    }
+    else {
+      return this.setState({
+        currentPage: value
+      })
+    }
   }
 
   render() {
+
     const {
       currentPlace,
       reviewsByPlace,
@@ -96,6 +113,8 @@ class App extends React.Component {
       reviewsEnd
     } = this.state;
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
+
+    console.log(currentPage)
 
     return (
       <div>
