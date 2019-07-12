@@ -1,5 +1,4 @@
-const { Review } = require('./models.js')
-// const { AverageRating } = require('./models.js')
+const { Review, AverageRating } = require('./models.js')
 const faker = require('faker')
 
 const createPlaceIds = function(){
@@ -17,26 +16,32 @@ Review.sync({ force: true })
   for (var i = 0; i < placeIds.length; i++){
     var reviewsNum = Math.floor(Math.random() * Math.floor(60))
     for (var j = 0; j < reviewsNum; j++){
-      Review.create({
+      let newReview = {
         idPlace: placeIds[i],
         username: faker.name.findName(),
         idUser: faker.random.number(),
         createdAt: faker.date.past(),
         text: faker.lorem.text(),
         avatarUrl: faker.image.avatar(),
-        accuracy_rating: faker.random.number(5),
-        communication_rating: faker.random.number(5),
-        cleanliness_rating: faker.random.number(5),
-        location_rating: faker.random.number(5),
-        checkin_rating: faker.random.number(5),
-        value_rating: faker.random.number(5),
-        overall_rating: faker.random.number(5)
-      })
+      }
+      Review.create(newReview)
     }
   }
 })
 
-// AverageRating.sync({ force: true })
-// .then(() => {
-
-// })
+AverageRating.sync({ force: true })
+.then(() => {
+    for (var i = 0; i < placeIds.length; i++){
+      let newRating = {
+        idPlace: placeIds[i],
+        accuracy_avg: faker.random.number(5),
+        communication_avg: faker.random.number(5),
+        cleanliness_avg: faker.random.number(5),
+        location_avg: faker.random.number(5),
+        checkin_avg: faker.random.number(5),
+        value_avg: faker.random.number(5),
+        overall_avg: faker.random.number(5),
+      }
+      AverageRating.create(newRating)
+    }
+})

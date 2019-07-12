@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./index.js')
 
-const Review = Sequelize.Model;
-// const AverageRating = Sequelize.Model;
+const Model = Sequelize.Model;
+
+class Review extends Model {};
 
 Review.init(
   // attributes:
@@ -30,35 +31,7 @@ Review.init(
     avatarUrl: {
       type: Sequelize.STRING,
       allowNull: false
-    },
-    accuracy_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    communication_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    cleanliness_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    location_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    checkin_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    value_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    overall_rating: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
+    }
   },
   // options:
   {
@@ -68,51 +41,52 @@ Review.init(
   }
 );
 
-// AverageRating.init(
-//   // attributes:
-//   {
-//     idPlace: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     accuracy_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     communication_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     cleanliness_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     location_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     checkin_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     value_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//     overall_avg: {
-//       type: Sequelize.INTEGER,
-//       allowNull: false
-//     },
-//   },
-//   // options:
-//   {
-//     sequelize,
-//     modelName: 'averageRatings',
-//     timestamps: false
-//   }
-// );
+class AverageRating extends Model {};
+AverageRating.init(
+  // attributes:
+  {
+    idPlace: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    accuracy_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    communication_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    cleanliness_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    location_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    checkin_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    value_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+    overall_avg: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+    },
+  },
+  // options:
+  {
+    sequelize,
+    modelName: 'averageRatings',
+    timestamps: false
+  }
+);
 
 module.exports = {
   Review,
-  // AverageRating
+  AverageRating
 }
