@@ -1,8 +1,22 @@
 import React from 'react';
 
-const Star = (type) => (
-  <ion-icon name="star" type={type}></ion-icon>
-);
+const Star = (type) => {
+  const getStyle = () => {
+    if (type === 'filled'){
+      return {color: 'red'}
+    }
+    else if (type === 'partialFilled'){
+      return {color: 'purple'}
+    }
+    else {
+      return {color: 'green'}
+    }
+  }
+  return (
+    <ion-icon name="star" type={type} style={getStyle()}>
+    </ion-icon>
+  )
+}
 
 const Rating = ({rating}) => {
   const typeStars = (value) => {
@@ -33,37 +47,11 @@ const Rating = ({rating}) => {
     return stars;
   }
 
-  // buildStars()
-
   return (
     <div>
       {buildStars()}
     </div>
-
   )
-
-
-
 };
 
 export default Rating;
-
-// const starsFilled = [];
-//   for (var i = 0; i < rating; i++){
-//     starsFilled.push(
-//       <ion-icon name="star" key={i}></ion-icon>
-//     )
-//   }
-//   const starsNotFilled = [];
-//   for (var i = 0; i < 5 - rating; i++){
-//     starsNotFilled.push(
-//       <ion-icon name="star" key={i} style={{color: 'pink'}}></ion-icon>
-//     )
-//   }
-
-//   return (
-//     <div>
-//       {starsFilled}
-//       {starsNotFilled}
-//     </div>
-//   );
