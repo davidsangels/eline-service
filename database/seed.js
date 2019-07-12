@@ -34,13 +34,13 @@ AverageRating.sync({ force: true })
     for (var i = 0; i < placeIds.length; i++){
       let newRating = {
         idPlace: placeIds[i],
-        accuracy_avg: faker.random.number(5),
-        communication_avg: faker.random.number(5),
-        cleanliness_avg: faker.random.number(5),
-        location_avg: faker.random.number(5),
-        checkin_avg: faker.random.number(5),
-        value_avg: faker.random.number(5),
-        overall_avg: faker.random.number(5),
+        accuracy_avg: faker.random.number({max: 5, precision: 0.01}),
+        communication_avg: faker.random.number({max: 5, precision: 0.01}),
+        cleanliness_avg: faker.random.number({max: 5, precision: 0.01}),
+        location_avg: faker.random.number({max: 5, precision: 0.01}),
+        checkin_avg: faker.random.number({max: 5, precision: 0.01}),
+        value_avg: faker.random.number({max: 5, precision: 0.01}),
+        overall_avg: faker.random.number({max: 5, precision: 0.01}),
       }
       AverageRating.create(newRating)
     }
