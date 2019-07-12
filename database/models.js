@@ -50,31 +50,31 @@ AverageRating.init(
       allowNull: false
     },
     accuracy_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     communication_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     cleanliness_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     location_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     checkin_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     value_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
     overall_avg: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DECIMAL(10,2),
       allowNull: false
     },
   },
