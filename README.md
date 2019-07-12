@@ -1,7 +1,7 @@
 # Airbnb - The Good Place
 
 > Project description:
-This project is responsible to build a similar reviews session of Airbnb's item page.
+This project is responsible to build a similar reviews module of Airbnb's item page.
 
 ## Related Projects
 
@@ -34,4 +34,10 @@ From within the root directory:
 
 - After clonning this repo, command `npm install`.
 - To generate data in database, command `npm run seed`.
+  If database is not been created: create database manually inside mysql env. To seed generator works correctly, the database name must be `airbnb`.
 - To run tests for front-end (react components), command `npm run test`.
+- For initialize server, command `npm start`. Configured to run automatically when changes are detected.
+
+Other scripts:
+`npm run dev-react`: runs webpack to generate a bundle.js file used in `index.html` file. Configured to run automatically when changes are detected.
+`npm run lint`: runs eslint in client folder.
