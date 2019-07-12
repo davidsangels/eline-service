@@ -3,13 +3,16 @@ import React from 'react';
 const Star = (type) => {
   const getStyle = () => {
     if (type === 'filled'){
-      return {color: 'red'}
+      // green color of airbnb star rating
+      return {fill: '#008489'}
     }
     else if (type === 'partialFilled'){
-      return {color: 'purple'}
+      // TODO: fill with the value of partialFilled
+      return {fill: '#008489'}
     }
     else {
-      return {color: 'green'}
+      // grey color of airbnb star rating (similar)
+      return {fill: '#CECBCB'}
     }
   }
   return (
