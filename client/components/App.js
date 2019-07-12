@@ -6,9 +6,6 @@ import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
 import Pagination from './Pagination';
-import {mockData} from '../sampleData';
-
-const numBtn = Math.ceil(mockData.length / 7);
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +24,7 @@ class App extends React.Component {
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
+    this.handleChangePage = this.handleChangePage.bind(this);
   }
 
   componentDidMount(){
@@ -81,6 +79,10 @@ class App extends React.Component {
     })
   }
 
+  handleChangePage(value, typeBtn){
+    console.log(value, typeBtn)
+  }
+
   render() {
     const {
       currentPlace,
@@ -104,8 +106,9 @@ class App extends React.Component {
               reviews={reviewsByPlace.slice(pagination.start, pagination.end)}
             />
             <Pagination
-              numBtn={numBtn}
+              numBtns={Math.ceil(reviewsByPlace.length / 7)}
               activeBtn={this.state.activeBtn}
+              changePage={this.handleChangePage}
             />
           </div>
         )}
