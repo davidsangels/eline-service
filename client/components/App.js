@@ -77,7 +77,11 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentPlace, ratingsByPlace } = this.state;
+    const {
+      currentPlace,
+      reviewsByPlace,
+      ratingsByPlace
+    } = this.state;
 
     return (
       <div>
@@ -90,7 +94,7 @@ class App extends React.Component {
             </div>
             <hr />
             <Attributes rating={ratingsByPlace}/>
-            <Reviews reviews={mockData} />
+            <Reviews reviews={reviewsByPlace} />
             <Pagination
               numBtn={numBtn}
               activeBtn={this.state.activeBtn}
