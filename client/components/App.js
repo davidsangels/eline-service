@@ -18,7 +18,12 @@ class App extends React.Component {
       currentPlace: null,
       places: [],
       reviewsByPlace: [],
-      ratingsByPlace: []
+      ratingsByPlace: [],
+      pagination: {
+        start: 0,
+        end: 7,
+        page: 1
+      }
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
@@ -80,7 +85,8 @@ class App extends React.Component {
     const {
       currentPlace,
       reviewsByPlace,
-      ratingsByPlace
+      ratingsByPlace,
+      pagination
     } = this.state;
 
     return (
@@ -94,7 +100,9 @@ class App extends React.Component {
             </div>
             <hr />
             <Attributes rating={ratingsByPlace}/>
-            <Reviews reviews={reviewsByPlace} />
+            <Reviews
+              reviews={reviewsByPlace.slice(pagination.start, pagination.end)}
+            />
             <Pagination
               numBtn={numBtn}
               activeBtn={this.state.activeBtn}
