@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Star = (type) => {
+const Star = (type, index) => {
   const getStyle = () => {
     if (type === 'filled'){
       // green color of airbnb star rating
@@ -16,15 +16,18 @@ const Star = (type) => {
     }
   }
   return (
-    <ion-icon name="star" type={type} style={getStyle()}>
-    </ion-icon>
+    <ion-icon
+      name="star"
+      type={type}
+      style={getStyle()}
+      key={`${type},${index}`}
+    ></ion-icon>
   )
 }
 
 const Rating = ({rating}) => {
-  const typeStars = (value) => {
+  const typeStars = ((value) => {
     const result = {};
-
     if(value % 1 === 0){
       result.notFilled = 5 - value;
       result.filled = 5 - result.notFilled;
@@ -35,16 +38,15 @@ const Rating = ({rating}) => {
       result.notFilled = 5 - result.filled - Math.ceil(result.partialFilled);
     }
     return result;
-  }
+  })(rating);
 
   const buildStars = () => {
     const stars = []
-    const types = typeStars(rating);
-    for (var key in types){
+    for (var key in typeStars){
       const type = key;
-      const numStars = types[key]
+      const numStars = typeStars[key]
       for (let i = 0; i < numStars; i++){
-        stars.push(Star(type))
+        stars.push(Star(type, i))
       }
     }
     return stars;
