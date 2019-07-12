@@ -2,26 +2,26 @@ const express = require('express')
 const app = express()
 const port = 3000
 const {
-  getAllReviews,
+  getAllPlaces,
   getReviewsById,
   getRatingsById
 } = require('../database/controllers.js')
 
 app.use(express.static('public'))
 
-// Get all the reviews for all idPlaces.
-app.get('/api/reviews', (req, res) => {
-  getAllReviews((err, reviews) => {
+// Get all idPlaces
+app.get('/api/places', (req, res) => {
+  getAllPlaces((err, places) => {
     if(err){
       console.log(err)
     }
     else {
-      res.send(reviews)
+      res.send(places)
     }
   })
 })
 
-// Get all the reviews for a specific place.
+// Get all the reviews for a specific place
 app.get('/api/reviews/:idPlace', (req, res) => {
   getReviewsById(req.params.idPlace, (err, reviews) => {
     if(err){
@@ -33,7 +33,7 @@ app.get('/api/reviews/:idPlace', (req, res) => {
   })
 })
 
-// Get all the ratings for a specific place.
+// Get all the ratings for a specific place
 app.get('/api/ratings/:idPlace', (req, res) => {
   getRatingsById(req.params.idPlace, (err, ratings) => {
     if(err){

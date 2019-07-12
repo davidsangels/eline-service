@@ -1,7 +1,9 @@
 const { Review, AverageRating } = require('./models.js')
 
-const getAllReviews = (callback) => {
-  Review.findAll({})
+const getAllPlaces = (callback) => {
+  AverageRating.findAll({
+    attributes: ['idPlace']
+  })
   .then(data => {callback(null, data)})
   .catch(err => {callback(err)})
 }
@@ -27,7 +29,7 @@ const getRatingsById = (id, callback) => {
 }
 
 module.exports = {
-  getAllReviews,
+  getAllPlaces,
   getReviewsById,
   getRatingsById
 }
