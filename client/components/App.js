@@ -71,14 +71,13 @@ class App extends React.Component {
     })
     .done(data => {
       return this.setState({
-        ratingsByPlace: data
+        ratingsByPlace: data.reduce(cur => cur)
       })
     })
   }
 
   render() {
-    const { currentPlace, places } = this.state;
-    console.log(this.state.ratingsByPlace)
+    const { currentPlace, ratingsByPlace } = this.state;
 
     return (
       <div>
@@ -86,7 +85,7 @@ class App extends React.Component {
           <div>
             <div style={{display: 'flex', alignItems: 'center'}}>
               <h4>357 Reviews</h4>
-              <Rating />
+              <Rating rating={ratingsByPlace.overall_avg} />
               <Search />
             </div>
             <hr />

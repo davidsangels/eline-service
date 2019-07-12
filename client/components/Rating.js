@@ -1,14 +1,18 @@
 import React from 'react';
-// import { FaBeer } from 'react-icons/fa';
 
-const Rating = () => {
+const Rating = ({rating}) => {
+  const starsFilled = [];
+  for (var i = 0; i < rating; i++){
+    starsFilled.push(<ion-icon name="star"></ion-icon>)
+  }
+  const starsNotFilled = [];
+  for (var i = 0; i < 5 - rating; i++){
+    starsNotFilled.push(<ion-icon name="star" style={{backgroundColor: 'pink'}}></ion-icon>)
+  }
   return (
     <div>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
-      <ion-icon name="star"></ion-icon>
+      {starsFilled}
+      {starsNotFilled}
     </div>
   );
 };
