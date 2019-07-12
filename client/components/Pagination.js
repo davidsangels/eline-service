@@ -5,6 +5,7 @@ import pagination from '../helpers/pagination.js'
 const Pagination = ({
   currentPage,
   numBtns,
+  changePage
 }) => {
   const buttons = pagination(currentPage, numBtns)
   return (
@@ -14,7 +15,7 @@ const Pagination = ({
           type='button'
           value={btn}
           key={btn}
-          // onClick={(e) => changePage(e.target.value)}
+          onClick={(e) => changePage(e.target.value)}
         >{btn}</button>
       ))}
       <button

@@ -22,7 +22,7 @@ class App extends React.Component {
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
-    // this.handleChangePage = this.handleChangePage.bind(this);
+    this.handleChangePage = this.handleChangePage.bind(this);
   }
 
   componentDidMount(){
@@ -77,28 +77,14 @@ class App extends React.Component {
     })
   }
 
-  // handleChangePage(value){
-  //   console.log(value)
-  //   const { page } =  this.state.pagination;
-  //   const { reviewsByPlace } = this.state;
-  //   const numBtns = Math.ceil(reviewsByPlace.length / 7)
+  handleChangePage(value){
+    const { currentPage, reviewsByPlace } = this.state;
 
-  //   if (value === 'next' && page < numBtns){
-  //     return this.setState(state => {
-  //       return {
-  //         pagination: {
-  //           start: state.pagination.start + 7,
-  //           end: state.pagination.end + 7,
-  //           page: state.pagination.page++
-  //         }
-  //       }
-  //     })
-  //   }
-  //   else {
+    return this.setState({
+      currentPage: value
+    })
 
-  //   }
-
-  // }
+  }
 
   render() {
     const {
@@ -128,8 +114,7 @@ class App extends React.Component {
             <Pagination
               currentPage={currentPage}
               numBtns={numBtns}
-              // activeBtn={this.state.activeBtn}
-              // changePage={this.handleChangePage}
+              changePage={this.handleChangePage}
             />
           </div>
         )}
