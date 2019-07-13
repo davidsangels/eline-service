@@ -9,7 +9,7 @@ const Pagination = ({
 }) => {
   const buttons = pagination(currentPage, numBtns)
   return (
-    <div>
+    <div style={styles.divMain}>
       {currentPage != 1 && (
         <button
           type='button'
@@ -23,7 +23,7 @@ const Pagination = ({
       {buttons.map(btn => {
         if (btn === '...'){
           return (
-            <span key={btn} style={styles.dots}>{btn}</span>
+            <span key={btn}>{btn}</span>
           )
         } else {
           return (
@@ -53,6 +53,10 @@ const Pagination = ({
 };
 
 const styles = {
+  divMain: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   activeBtn: {
     backgroundColor: '#008489'
   },
@@ -70,17 +74,20 @@ const styles = {
     fontSize: '16px',
     fontWeight: '200',
   },
-  dots: {
-    verticalAlign: 'super'
-  },
   btnBackAndGo: {
+    borderRadius: '50%',
     backgroundColor: 'transparent',
+    color: 'rgb(0, 132, 137)',
     boxShadow: 'rgb(0, 132, 137) 0px 0px 0px 1px inset',
     color: 'rgb(0, 132, 137)',
     height: '32px',
     width: '32px',
-    borderRadius: '50%',
-  }
+    textDecoration: 'none',
+    margin: '0 8px 0 8px',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '200',
+  },
 }
 
 export default Pagination;
