@@ -17,14 +17,22 @@ const Pagination = ({
           onClick={(e) => changePage(e.target.value)}
         >Before</button>
       )}
-      {buttons.map(btn => (
-        <button
-          type='button'
-          value={btn}
-          key={btn}
-          onClick={(e) => changePage(e.target.value)}
-        >{btn}</button>
-      ))}
+      {buttons.map(btn => {
+        if (btn === '...'){
+          return (
+            <span key={btn}>{btn}</span>
+          )
+        } else {
+          return (
+            <button
+              type='button'
+              value={btn}
+              key={btn}
+              onClick={(e) => changePage(e.target.value)}
+            >{btn}</button>
+          )
+        }
+      })}
       {currentPage != numBtns && (
         <button
           type='button'
