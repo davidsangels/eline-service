@@ -18,11 +18,14 @@ class App extends React.Component {
       ratingsByPlace: [],
       currentPage: 1,
       reviewsStart: 0,
-      reviewsEnd: 7
+      reviewsEnd: 7,
+      textSearch: ''
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
+    this.handleSearchReviews = this.handleSearchReviews.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
   }
 
   componentDidMount(){
@@ -110,6 +113,34 @@ class App extends React.Component {
     }
   }
 
+  handleChangeInput(e){
+    console.log(e.target.value)
+    return this.setState({
+      textSearch: e.target.value
+    })
+  }
+
+  handleSearchReviews(e){
+    e.preventDefault(e)
+    const query = this.state.textSearch
+
+    // ajax request to search query in db reviews model
+    if (query !== ''){
+      $.ajax({
+        type: 'GET',
+        url: `/api/reviews/search/${query}`
+      })
+      .done(data => {
+        return this.setState({
+          reviewsByPlace: data
+        })
+      })
+    }
+    else {
+      this.getReviewsByPlace(this.state.currentPlace)
+    }
+  }
+
   render() {
     const {
       currentPlace,
@@ -117,11 +148,12 @@ class App extends React.Component {
       ratingsByPlace,
       currentPage,
       reviewsStart,
-      reviewsEnd
+      reviewsEnd,
+      textSearch
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
-
+    console.log(reviewsByPlace)
     return (
       <div>
         {currentPlace !== 'null' && (
@@ -129,7 +161,11 @@ class App extends React.Component {
             <div style={{display: 'flex', alignItems: 'center'}}>
               <h4>357 Reviews</h4>
               <Rating rating={ratingsByPlace.overall_avg} />
-              <Search />
+              <Search
+                handleSearch={this.handleSearchReviews}
+                handleChange={this.handleChangeInput}
+                text={textSearch}
+              />
             </div>
             <hr />
             <Attributes rating={ratingsByPlace}/>
