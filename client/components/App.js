@@ -19,7 +19,8 @@ class App extends React.Component {
       currentPage: 1,
       reviewsStart: 0,
       reviewsEnd: 7,
-      textSearch: ''
+      textSearch: '',
+      showNotFound: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
@@ -131,13 +132,27 @@ class App extends React.Component {
         url: `/api/reviews/search/${query}`
       })
       .done(data => {
-        return this.setState({
+        this.setState({
           reviewsByPlace: data
         })
+      })
+      .done(() => {
+        if (this.state.reviewsByPlace.length === 0){
+          this.setState(state => {
+            return {
+              showNotFound: !state.showNotFound
+            }
+          })
+        }
       })
     }
     else {
       this.getReviewsByPlace(this.state.currentPlace)
+      this.setState(state => {
+        return {
+          showNotFound: !state.showNotFound
+        }
+      })
     }
   }
 
@@ -149,7 +164,8 @@ class App extends React.Component {
       currentPage,
       reviewsStart,
       reviewsEnd,
-      textSearch
+      textSearch,
+      showNotFound
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
@@ -167,16 +183,26 @@ class App extends React.Component {
                 text={textSearch}
               />
             </div>
-            <hr />
-            <Attributes rating={ratingsByPlace}/>
-            <Reviews
-              reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
-            />
-            <Pagination
-              currentPage={currentPage}
-              numBtns={numBtns}
-              changePage={this.handleChangePage}
-            />
+            {!showNotFound && (
+              <React.Fragment>
+                <hr />
+                <Attributes rating={ratingsByPlace}/>
+                <Reviews
+                  reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  numBtns={numBtns}
+                  changePage={this.handleChangePage}
+                />
+              </React.Fragment>
+            )}
+            {showNotFound && (
+              <div>
+                None of our guests have mentioned “<strong>{textSearch}</strong>”
+              </div>
+              // make button to back to reviews
+            )}
           </div>
         )}
       </div>
