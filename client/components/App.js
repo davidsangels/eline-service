@@ -179,7 +179,7 @@ class App extends React.Component {
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     return (
-      <div>
+      <div style={styles.divModule}>
         {currentPlace !== 'null' && (
           <div>
             <div style={styles.divHeader}>
@@ -224,6 +224,9 @@ class App extends React.Component {
 }
 
 const styles = {
+  divModule: {
+    width: '60%'
+  },
   divHeader: {
     display: 'flex',
     alignItems: 'center',
