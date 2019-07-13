@@ -28,6 +28,7 @@ const Pagination = ({
               type='button'
               value={btn}
               key={btn}
+              style={btn == currentPage ? styles.activeBtn : null}
               onClick={(e) => changePage(e.target.value)}
             >{btn}</button>
           )
@@ -43,5 +44,9 @@ const Pagination = ({
     </div>
   );
 };
+
+const styles = {
+  activeBtn: {backgroundColor: '#008489'},
+}
 
 export default Pagination;
