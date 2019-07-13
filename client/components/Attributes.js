@@ -19,7 +19,7 @@ const Attributes = ({rating}) => {
         const valueAttr = rating[Object.values(attr)[0]];
         return(
           <div key={index} style={styles.divAttribute}>
-            <div>{nameAttr}</div>
+            <div style={styles.textAttribute}>{nameAttr}</div>
             <Rating rating={valueAttr} />
           </div>
         )
@@ -31,7 +31,7 @@ const Attributes = ({rating}) => {
         const valueAttr = rating[Object.values(attr)[0]];
         return(
           <div key={index} style={styles.divAttribute}>
-            <div>{nameAttr}</div>
+            <div style={styles.textAttribute}>{nameAttr}</div>
             <Rating rating={valueAttr} />
           </div>
         )
@@ -58,6 +58,15 @@ const styles = {
   divAttribute: {
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  textAttribute: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '200',
+    lineHeight: '1.375em',
+    color: '#484848',
   }
 }
 export default Attributes;
