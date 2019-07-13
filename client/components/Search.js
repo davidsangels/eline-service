@@ -5,7 +5,7 @@ const Search = ({handleSearch, handleChange, text}) => {
     <div style={styles.form}>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
-          <div style={styles.divIcon}>icon</div>
+          <ion-icon name="search" style={styles.icon}></ion-icon>
           <input
             type="text"
             value={text}
@@ -13,6 +13,7 @@ const Search = ({handleSearch, handleChange, text}) => {
             onChange={(e) => handleChange(e)}
             style={styles.input}
           />
+
         </div>
     </form>
     </div>
@@ -22,10 +23,29 @@ const Search = ({handleSearch, handleChange, text}) => {
 const styles = {
   form: {
     width: '33%',
-    textAlign: 'end'
   },
-  divIcon: {
-    float: 'left'
+  icon: {
+    fontSize: '20px',
+    verticalAlign: 'middle',
+    fontWeight: '200',
+    lineHeight: '22px',
+    letterSpacing: 'normal',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    textTransform: 'undefined',
+    color: '#484848',
+  },
+  divInput: {
+    display: 'contents',
+    backgroundColor: '#ffffff',
+    fontSize: '14px',
+    lineHeight: '22px',
+    letterSpacing: 'normal',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    textTransform: 'undefined',
+    color: '#484848',
+    paddingTop: 'undefined',
+    paddingBottom: 'undefined',
+    marginBottom: '8px'
   },
   input: {
     backgroundColor: 'transparent',
@@ -41,18 +61,7 @@ const styles = {
     border: 'none',
     borderColor: 'transparent',
   },
-  divInput: {
-    backgroundColor: '#ffffff',
-    fontSize: '14px',
-    lineHeight: '22px',
-    letterSpacing: 'normal',
-    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    textTransform: 'undefined',
-    color: '#484848',
-    paddingTop: 'undefined',
-    paddingBottom: 'undefined',
-    marginBottom: '8px'
-  }
+
 }
 
 export default Search;
