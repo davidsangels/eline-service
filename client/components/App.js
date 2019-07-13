@@ -229,7 +229,7 @@ const styles = {
     wordWrap: 'break-word',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
     fontSize: '24px',
-    fontWeight: '800',
+    fontWeight: '600',
     lineHeight: '1.25em',
     color: '#484848',
     paddingTop: '2px',
