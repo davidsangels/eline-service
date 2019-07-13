@@ -114,8 +114,6 @@ class App extends React.Component {
     } = this.state;
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
-    console.log(currentPage)
-
     return (
       <div>
         {currentPlace !== 'null' && (

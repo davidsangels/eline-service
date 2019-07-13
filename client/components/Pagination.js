@@ -10,7 +10,7 @@ const Pagination = ({
   const buttons = pagination(currentPage, numBtns)
   return (
     <div>
-      {currentPage !== 1 && (
+      {currentPage != 1 && (
         <button
           type='button'
           value='before'
@@ -25,7 +25,7 @@ const Pagination = ({
           onClick={(e) => changePage(e.target.value)}
         >{btn}</button>
       ))}
-      {currentPage !== numBtns && (
+      {currentPage != numBtns && (
         <button
           type='button'
           value='next'
