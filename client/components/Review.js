@@ -41,6 +41,9 @@ const styles = {
   },
   userInfo: {
     marginLeft: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 'none'
   },
   img: {
     backgroundColor: '#D8D8D8',
