@@ -1,22 +1,52 @@
 import React from 'react';
+import pagination from '../helpers/pagination.js'
 
 // max 7 reviews per page
-
-const Pagination = ({numBtn, activeBtn}) => {
-  var buttons = [];
-  for (var i = 1; i <= numBtn; i++) {
-    buttons.push(
-      <button value={i} key={i}>
-        {i}
-      </button>
-    );
-  }
-
+const Pagination = ({
+  currentPage,
+  numBtns,
+  changePage
+}) => {
+  const buttons = pagination(currentPage, numBtns)
   return (
     <div>
-      {buttons}
+      {currentPage != 1 && (
+        <button
+          type='button'
+          value='before'
+          onClick={(e) => changePage(e.target.value)}
+        >Before</button>
+      )}
+      {buttons.map(btn => {
+        if (btn === '...'){
+          return (
+            <span key={btn}>{btn}</span>
+          )
+        } else {
+          return (
+            <button
+              type='button'
+              value={btn}
+              key={btn}
+              style={btn == currentPage ? styles.activeBtn : null}
+              onClick={(e) => changePage(e.target.value)}
+            >{btn}</button>
+          )
+        }
+      })}
+      {currentPage != numBtns && (
+        <button
+          type='button'
+          value='next'
+          onClick={(e) => changePage(e.target.value)}
+        >Next</button>
+      )}
     </div>
   );
 };
+
+const styles = {
+  activeBtn: {backgroundColor: '#008489'},
+}
 
 export default Pagination;

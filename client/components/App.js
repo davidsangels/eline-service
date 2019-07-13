@@ -6,9 +6,6 @@ import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
 import Pagination from './Pagination';
-import {mockData} from '../sampleData';
-
-const numBtn = Math.ceil(mockData.length / 7);
 
 class App extends React.Component {
   constructor(props) {
@@ -18,10 +15,14 @@ class App extends React.Component {
       currentPlace: null,
       places: [],
       reviewsByPlace: [],
-      ratingsByPlace: []
+      ratingsByPlace: [],
+      currentPage: 1,
+      reviewsStart: 0,
+      reviewsEnd: 7
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
+    this.handleChangePage = this.handleChangePage.bind(this);
   }
 
   componentDidMount(){
@@ -76,12 +77,50 @@ class App extends React.Component {
     })
   }
 
+  handleChangePage(value){
+    const { currentPage, reviewsByPlace } = this.state;
+    const numBtns = Math.ceil(reviewsByPlace.length / 7);
+
+    if(value === 'next' && currentPage < numBtns){
+      return this.setState(state => {
+        return {
+          currentPage: state.currentPage + 1,
+          reviewsStart: state.reviewsStart + 7,
+          reviewsEnd: state.reviewsEnd + 7
+        }
+      })
+    }
+    else if (value === 'before' && currentPage >= 1){
+      return this.setState(state => {
+        return {
+          currentPage: state.currentPage - 1,
+          reviewsStart: state.reviewsStart - 7,
+          reviewsEnd: state.reviewsEnd - 7
+        }
+      })
+    }
+    else {
+      let end = value * 7;
+      let start = end - 7;
+      return this.setState({
+        currentPage: value,
+        reviewsStart: start,
+        reviewsEnd: end
+      })
+    }
+  }
+
   render() {
     const {
       currentPlace,
       reviewsByPlace,
-      ratingsByPlace
+      ratingsByPlace,
+      currentPage,
+      reviewsStart,
+      reviewsEnd
     } = this.state;
+
+    const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     return (
       <div>
@@ -94,10 +133,13 @@ class App extends React.Component {
             </div>
             <hr />
             <Attributes rating={ratingsByPlace}/>
-            <Reviews reviews={reviewsByPlace} />
+            <Reviews
+              reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+            />
             <Pagination
-              numBtn={numBtn}
-              activeBtn={this.state.activeBtn}
+              currentPage={currentPage}
+              numBtns={numBtns}
+              changePage={this.handleChangePage}
             />
           </div>
         )}
