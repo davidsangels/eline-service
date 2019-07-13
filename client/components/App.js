@@ -84,26 +84,33 @@ class App extends React.Component {
     if(value === 'next' && currentPage < numBtns){
       return this.setState(state => {
         return {
-          currentPage: state.currentPage + 1
+          currentPage: state.currentPage + 1,
+          reviewsStart: state.reviewsStart + 7,
+          reviewsEnd: state.reviewsEnd + 7
         }
       })
     }
     else if (value === 'before' && currentPage >= 1){
       return this.setState(state => {
         return {
-          currentPage: state.currentPage - 1
+          currentPage: state.currentPage - 1,
+          reviewsStart: state.reviewsStart - 7,
+          reviewsEnd: state.reviewsEnd - 7
         }
       })
     }
     else {
+      let end = value * 7;
+      let start = end - 7;
       return this.setState({
-        currentPage: value
+        currentPage: value,
+        reviewsStart: start,
+        reviewsEnd: end
       })
     }
   }
 
   render() {
-
     const {
       currentPlace,
       reviewsByPlace,
@@ -112,6 +119,7 @@ class App extends React.Component {
       reviewsStart,
       reviewsEnd
     } = this.state;
+
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     return (
