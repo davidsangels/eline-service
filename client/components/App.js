@@ -183,7 +183,9 @@ class App extends React.Component {
         {currentPlace !== 'null' && (
           <div>
             <div style={{display: 'flex', alignItems: 'center'}}>
-              <div style={styles.numReviews}>357 Reviews</div>
+              <div style={styles.numReviews}>
+                {reviewsByPlace.length} Reviews
+              </div>
               <Rating rating={ratingsByPlace.overall_avg} />
               <Search
                 handleSearch={this.handleSearchReviews}

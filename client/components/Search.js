@@ -15,7 +15,6 @@ const Search = ({handleSearch, handleChange, text}) => {
         </div>
     </form>
     </div>
-
   );
 };
 
