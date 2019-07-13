@@ -64,7 +64,8 @@ const Rating = ({rating}) => {
 
 const styles={
   divMain: {
-    marginLeft: '16px',
+    width: '25%',
+    alignSelf: 'flex-end'
   }
 }
 

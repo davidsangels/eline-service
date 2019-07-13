@@ -224,6 +224,7 @@ class App extends React.Component {
 
 const styles = {
   numReviews: {
+    width: '25%',
     margin: '0px',
     wordWrap: 'break-word',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
