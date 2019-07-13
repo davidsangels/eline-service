@@ -1,14 +1,15 @@
 import React from 'react';
 
-const Search = () => {
+const Search = ({handleSearch, handleChange, text}) => {
   return (
-    <input
-      type="text"
-      name="review-search-box"
-      placeholder="Search reviews"
-      // TODO: value will be received from App component
-      // value="..."
-    />
+    <form onSubmit={(e) => handleSearch(e)}>
+      <input
+        type="text"
+        value={text}
+        placeholder="Search reviews"
+        onChange={(e) => handleChange(e)}
+      />
+    </form>
   );
 };
 

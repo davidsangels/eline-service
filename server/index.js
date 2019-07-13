@@ -4,7 +4,8 @@ const port = 3000
 const {
   getAllPlaces,
   getReviewsById,
-  getRatingsById
+  getRatingsById,
+  searchReviews
 } = require('../database/controllers.js')
 
 app.use(express.static('public'))
@@ -41,6 +42,18 @@ app.get('/api/ratings/:idPlace', (req, res) => {
     }
     else {
       res.send(ratings)
+    }
+  })
+})
+
+// Get all the reviews for a specific query
+app.get('/api/reviews/search/:query', (req, res) => {
+  searchReviews(req.params.query, (err, reviews) => {
+    if(err){
+      console.log(err)
+    }
+    else {
+      res.send(reviews)
     }
   })
 })

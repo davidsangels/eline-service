@@ -18,11 +18,16 @@ class App extends React.Component {
       ratingsByPlace: [],
       currentPage: 1,
       reviewsStart: 0,
-      reviewsEnd: 7
+      reviewsEnd: 7,
+      textSearch: '',
+      showNotFound: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
     this.handleChangePage = this.handleChangePage.bind(this);
+    this.handleSearchReviews = this.handleSearchReviews.bind(this);
+    this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleBackButton = this.handleBackButton.bind(this);
   }
 
   componentDidMount(){
@@ -110,6 +115,55 @@ class App extends React.Component {
     }
   }
 
+  handleChangeInput(e){
+    console.log(e.target.value)
+    return this.setState({
+      textSearch: e.target.value
+    })
+  }
+
+  handleSearchReviews(e){
+    e.preventDefault(e)
+    const query = this.state.textSearch
+
+    // ajax request to search query in db reviews model
+    if (query !== ''){
+      $.ajax({
+        type: 'GET',
+        url: `/api/reviews/search/${query}`
+      })
+      .done(data => {
+        this.setState({
+          reviewsByPlace: data
+        })
+      })
+      .done(() => {
+        if (this.state.reviewsByPlace.length === 0){
+          this.setState(state => {
+            return {
+              showNotFound: !state.showNotFound
+            }
+          })
+        }
+      })
+    }
+    else {
+      this.getReviewsByPlace(this.state.currentPlace)
+      this.setState(state => {
+        return {
+          showNotFound: !state.showNotFound
+        }
+      })
+    }
+  }
+
+  handleBackButton(){
+    this.setState(state => {
+      return {showNotFound: !state.showNotFound}
+    })
+    this.getReviewsByPlace(this.state.currentPlace)
+  }
+
   render() {
     const {
       currentPlace,
@@ -117,11 +171,13 @@ class App extends React.Component {
       ratingsByPlace,
       currentPage,
       reviewsStart,
-      reviewsEnd
+      reviewsEnd,
+      textSearch,
+      showNotFound
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
-
+    console.log(reviewsByPlace)
     return (
       <div>
         {currentPlace !== 'null' && (
@@ -129,18 +185,36 @@ class App extends React.Component {
             <div style={{display: 'flex', alignItems: 'center'}}>
               <h4>357 Reviews</h4>
               <Rating rating={ratingsByPlace.overall_avg} />
-              <Search />
+              <Search
+                handleSearch={this.handleSearchReviews}
+                handleChange={this.handleChangeInput}
+                text={textSearch}
+              />
             </div>
-            <hr />
-            <Attributes rating={ratingsByPlace}/>
-            <Reviews
-              reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
-            />
-            <Pagination
-              currentPage={currentPage}
-              numBtns={numBtns}
-              changePage={this.handleChangePage}
-            />
+            {!showNotFound && (
+              <React.Fragment>
+                <hr />
+                <Attributes rating={ratingsByPlace}/>
+                <Reviews
+                  reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  numBtns={numBtns}
+                  changePage={this.handleChangePage}
+                />
+              </React.Fragment>
+            )}
+            {showNotFound && (
+              <div>
+                <div>
+                  None of our guests have mentioned “<strong>{textSearch}</strong>”
+                </div>
+                <button onClick={this.handleBackButton}>
+                  Back to all reviews
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
