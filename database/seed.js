@@ -18,7 +18,7 @@ Review.sync({ force: true })
     for (var j = 0; j < reviewsNum; j++){
       let newReview = {
         idPlace: placeIds[i],
-        username: faker.name.findName(),
+        username: faker.name.firstName(),
         idUser: faker.random.number(),
         createdAt: faker.date.past(),
         text: faker.lorem.text(),
