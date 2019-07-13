@@ -11,7 +11,7 @@ const Review = ({review}) => {
           style={styles.img}
         />
         <div style={styles.userInfo}>
-          <div>{review.username}</div>
+          <div style={styles.userName}>{review.username}</div>
           <div>{review.createdAt}</div>
         </div>
       </div>
@@ -35,6 +35,15 @@ const styles = {
     borderRadius: '50%',
     borderWidth: '2px',
     borderColor: '#ffffff'
+  },
+  userName: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '500',
+    lineHeight: '1.375em',
+    color: '#484848',
   }
 }
 
