@@ -12,19 +12,24 @@ const attributes = [
 
 const Attributes = ({rating}) => {
   return (
-    <div>
+    <div >
       {attributes.map((attr, index) => {
         const nameAttr = Object.keys(attr)[0];
         const valueAttr = rating[Object.values(attr)[0]];
         return(
           <div key={index}>
-          <span>{nameAttr}</span>
-          <Rating rating={valueAttr} />
-        </div>
+            <span>{nameAttr}</span>
+            <Rating rating={valueAttr} />
+          </div>
         )
       })}
     </div>
   );
 };
 
+const styles = {
+  divMain: {
+
+  }
+}
 export default Attributes;

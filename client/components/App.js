@@ -182,7 +182,7 @@ class App extends React.Component {
       <div>
         {currentPlace !== 'null' && (
           <div>
-            <div style={{display: 'flex', alignItems: 'center'}}>
+            <div style={styles.divHeader}>
               <div style={styles.numReviews}>
                 {reviewsByPlace.length} Reviews
               </div>
@@ -194,8 +194,7 @@ class App extends React.Component {
               />
             </div>
             {!showNotFound && (
-              <React.Fragment>
-                <hr />
+              <div>
                 <Attributes rating={ratingsByPlace}/>
                 <Reviews
                   reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
@@ -205,7 +204,7 @@ class App extends React.Component {
                   numBtns={numBtns}
                   changePage={this.handleChangePage}
                 />
-              </React.Fragment>
+              </div>
             )}
             {showNotFound && (
               <div>
@@ -225,6 +224,11 @@ class App extends React.Component {
 }
 
 const styles = {
+  divHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: '16px 0 32px 0'
+  },
   numReviews: {
     width: '25%',
     margin: '0px',
