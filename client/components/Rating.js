@@ -2,17 +2,20 @@ import React from 'react';
 
 const Star = (type, index) => {
   const getStyle = () => {
+    const otherStyles = {
+      fontSize: 24
+    }
     if (type === 'filled'){
       // green color of airbnb star rating
-      return {fill: '#008489'}
+      return {fill: '#008489', ...otherStyles}
     }
     else if (type === 'partialFilled'){
       // TODO: fill with the value of partialFilled
-      return {fill: '#008489'}
+      return {fill: '#008489', ...otherStyles}
     }
     else {
       // grey color of airbnb star rating (similar)
-      return {fill: '#CECBCB'}
+      return {fill: '#CECBCB', ...otherStyles}
     }
   }
   return (
@@ -53,10 +56,16 @@ const Rating = ({rating}) => {
   }
 
   return (
-    <div>
+    <div style={styles.divMain}>
       {buildStars()}
     </div>
   )
 };
+
+const styles={
+  divMain: {
+    marginLeft: '16px',
+  }
+}
 
 export default Rating;
