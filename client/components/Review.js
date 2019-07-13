@@ -3,6 +3,7 @@ var moment = require('moment');
 
 const Review = ({review}) => {
   const createdAt = moment(review.createdAt).format('MMMM YYYY')
+  const text = review.text.charAt(0).toUpperCase()+review.text.slice(1)
 
   return (
     <div style={styles.divMain}>
@@ -23,7 +24,7 @@ const Review = ({review}) => {
         </div>
       </div>
       <div style={styles.divText}>
-        {review.text}
+        {text}
       </div>
     </div>
   );
