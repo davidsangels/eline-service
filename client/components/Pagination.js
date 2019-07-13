@@ -31,9 +31,8 @@ const Pagination = ({
               type='button'
               value={btn}
               key={btn}
-              style={btn == currentPage ? styles.activeBtn : null}
+              style={btn == currentPage ? styles.activeBtn : styles.btnDefault}
               onClick={(e) => changePage(e.target.value)}
-              style={styles.btnDefault}
             >{btn}</button>
           )
         }
@@ -58,16 +57,24 @@ const styles = {
     alignItems: 'center'
   },
   activeBtn: {
-    backgroundColor: '#008489'
+    display: 'inline-block',
+    width: '32px',
+    height: '32px',
+    backgroundColor: 'rgb(0, 132, 137)',
+    color: 'rgb(255, 255, 255)',
+    borderRadius: '16px',
+    margin: '0 8px 0 8px',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '200',
   },
   btnDefault: {
     display: 'inline-block',
+    width: '32px',
+    height: '32px',
     backgroundColor: 'transparent',
     color: 'rgb(0, 132, 137)',
-    borderWidth: 'initial',
     borderStyle: 'none',
-    borderColor: 'initial',
-    borderImage: 'initial',
     textDecoration: 'none',
     margin: '0 8px 0 8px',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
