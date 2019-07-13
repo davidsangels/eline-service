@@ -5,6 +5,7 @@ const Search = ({handleSearch, handleChange, text}) => {
     <div style={styles.form}>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
+          <div style={styles.divIcon}>icon</div>
           <input
             type="text"
             value={text}
@@ -20,8 +21,11 @@ const Search = ({handleSearch, handleChange, text}) => {
 
 const styles = {
   form: {
-    width: '50%',
+    width: '33%',
     textAlign: 'end'
+  },
+  divIcon: {
+    float: 'left'
   },
   input: {
     backgroundColor: 'transparent',
@@ -47,6 +51,7 @@ const styles = {
     color: '#484848',
     paddingTop: 'undefined',
     paddingBottom: 'undefined',
+    marginBottom: '8px'
   }
 }
 

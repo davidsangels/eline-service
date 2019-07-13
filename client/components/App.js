@@ -184,9 +184,11 @@ class App extends React.Component {
           <div>
             <div style={styles.divHeader}>
               <div style={styles.numReviews}>
-                {reviewsByPlace.length} Reviews
+                <div>
+                  {reviewsByPlace.length} Reviews
+                </div>
+                <Rating rating={ratingsByPlace.overall_avg}/>
               </div>
-              <Rating rating={ratingsByPlace.overall_avg} />
               <Search
                 handleSearch={this.handleSearchReviews}
                 handleChange={this.handleChangeInput}
@@ -233,7 +235,8 @@ const styles = {
     margin: '16px 0 32px 0'
   },
   numReviews: {
-    width: '25%',
+    width: '66%',
+    display: 'flex',
     margin: '0px',
     wordWrap: 'break-word',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',

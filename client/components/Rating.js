@@ -64,8 +64,9 @@ const Rating = ({rating}) => {
 
 const styles={
   divMain: {
-    // width: '25%',
-    // alignSelf: 'flex-end'
+    marginLeft: '16px',
+    display: 'flex',
+    alignItems: 'center'
   }
 }
 
