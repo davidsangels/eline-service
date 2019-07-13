@@ -5,7 +5,7 @@ const Review = ({review}) => {
   const createdAt = moment(review.createdAt).format('MMMM YYYY')
 
   return (
-    <div>
+    <div style={styles.divMain}>
       <div style={styles.user}>
         <img
           src={review.avatarUrl}
@@ -22,13 +22,17 @@ const Review = ({review}) => {
           </div>
         </div>
       </div>
-      <p>{review.text}</p>
-      <hr />
+      <div style={styles.divText}>
+        {review.text}
+      </div>
     </div>
   );
 };
 
 const styles = {
+  divMain: {
+    marginBottom: '48px'
+  },
   user: {
     height: '48px',
     width: '48px',
@@ -60,6 +64,9 @@ const styles = {
     fontWeight: '200',
     lineHeight: '1.28em',
     color: '#484848',
+  },
+  divText: {
+    marginTop: '24px'
   }
 }
 
