@@ -27,6 +27,7 @@ class App extends React.Component {
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleSearchReviews = this.handleSearchReviews.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleBackButton = this.handleBackButton.bind(this);
   }
 
   componentDidMount(){
@@ -156,6 +157,13 @@ class App extends React.Component {
     }
   }
 
+  handleBackButton(){
+    this.setState(state => {
+      return {showNotFound: !state.showNotFound}
+    })
+    this.getReviewsByPlace(this.state.currentPlace)
+  }
+
   render() {
     const {
       currentPlace,
@@ -199,9 +207,13 @@ class App extends React.Component {
             )}
             {showNotFound && (
               <div>
-                None of our guests have mentioned “<strong>{textSearch}</strong>”
+                <div>
+                  None of our guests have mentioned “<strong>{textSearch}</strong>”
+                </div>
+                <button onClick={this.handleBackButton}>
+                  Back to all reviews
+                </button>
               </div>
-              // make button to back to reviews
             )}
           </div>
         )}
