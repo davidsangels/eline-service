@@ -17,7 +17,7 @@ const Pagination = ({
           onClick={(e) => changePage(e.target.value)}
           style={styles.btnBackAndGo}
         >
-          <ion-icon name="arrow-dropleft"></ion-icon>
+          <ion-icon name="arrow-back"></ion-icon>
         </button>
       )}
       {buttons.map(btn => {
@@ -44,7 +44,7 @@ const Pagination = ({
           onClick={(e) => changePage(e.target.value)}
           style={styles.btnBackAndGo}
         >
-          <ion-icon name="arrow-dropright"></ion-icon>
+          <ion-icon name="arrow-forward"></ion-icon>
         </button>
       )}
     </div>
@@ -92,9 +92,9 @@ const styles = {
     textDecoration: 'none',
     margin: '0 8px 0 8px',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    fontSize: '16px',
+    fontSize: '14px',
     fontWeight: '200',
-  },
+  }
 }
 
 export default Pagination;
