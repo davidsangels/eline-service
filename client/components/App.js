@@ -42,7 +42,7 @@ class App extends React.Component {
       }, []);
 
       console.log(
-        "%c These are the idPlaces available: ",
+        "%c These are the idPlaces created in db: ",
         "color: blue; font-size: 16px",
         idPlaces,
       );
@@ -177,13 +177,13 @@ class App extends React.Component {
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
-    console.log(reviewsByPlace)
+
     return (
       <div>
         {currentPlace !== 'null' && (
           <div>
             <div style={{display: 'flex', alignItems: 'center'}}>
-              <h4>357 Reviews</h4>
+              <div style={styles.numReviews}>357 Reviews</div>
               <Rating rating={ratingsByPlace.overall_avg} />
               <Search
                 handleSearch={this.handleSearchReviews}
@@ -219,6 +219,20 @@ class App extends React.Component {
         )}
       </div>
     );
+  }
+}
+
+const styles = {
+  numReviews: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '24px',
+    fontWeight: '800',
+    lineHeight: '1.25em',
+    color: '#484848',
+    paddingTop: '2px',
+    paddingBottom: '2px',
   }
 }
 
