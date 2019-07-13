@@ -1,6 +1,9 @@
 import React from 'react';
+var moment = require('moment');
 
 const Review = ({review}) => {
+  const createdAt = moment(review.createdAt).format('MMMM YYYY')
+
   return (
     <div>
       <div style={styles.user}>
@@ -11,8 +14,12 @@ const Review = ({review}) => {
           style={styles.img}
         />
         <div style={styles.userInfo}>
-          <div style={styles.userName}>{review.username}</div>
-          <div>{review.createdAt}</div>
+          <div style={styles.userName}>
+            {review.username}
+          </div>
+          <div style={styles.createdAt}>
+            {createdAt}
+          </div>
         </div>
       </div>
       <p>{review.text}</p>
@@ -28,7 +35,7 @@ const styles = {
     display: 'flex',
   },
   userInfo: {
-    marginLeft: '16px'
+    marginLeft: '16px',
   },
   img: {
     backgroundColor: '#D8D8D8',
@@ -43,6 +50,15 @@ const styles = {
     fontSize: '16px',
     fontWeight: '500',
     lineHeight: '1.375em',
+    color: '#484848',
+  },
+  createdAt: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '14px',
+    fontWeight: '200',
+    lineHeight: '1.28em',
     color: '#484848',
   }
 }
