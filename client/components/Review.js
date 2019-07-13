@@ -66,7 +66,13 @@ const styles = {
     color: '#484848',
   },
   divText: {
-    marginTop: '24px'
+    marginTop: '24px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '200',
+    lineHeight: '1.375em',
+    color: '#484848',
   }
 }
 
