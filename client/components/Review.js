@@ -46,6 +46,19 @@ const styles = {
     lineHeight: '1.375em',
     color: '#484848',
   },
+  button: {
+    color: '#008489',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '16px',
+    fontWeight: '200',
+    textDecoration: 'none',
+    background: 'transparent',
+    border: '0px',
+    cursor: 'pointer',
+    margin: '0px',
+    paddingLeft: '5px',
+    userSelect: 'auto',
+  },
   hr: {
     fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
     fontSize: '14px',
@@ -98,11 +111,12 @@ class Review extends React.Component {
                 {text.length > 275 && (
                   <div>
                     {text.slice(0, 275)}...
-                    <button onClick={() => this.setState(state => {
-                      return { showMoreText: !state.showMoreText }
-                    })}>
-                      Read more
-                    </button>
+                    <button
+                      onClick={() => this.setState(state => {
+                        return { showMoreText: !state.showMoreText }
+                      })}
+                      style={styles.button}
+                    >Read more</button>
                   </div>
                 )}
                 {text.length <= 275 && text}
