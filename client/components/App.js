@@ -115,38 +115,34 @@ class App extends React.Component {
   }
 
   handleChangePage(value) {
-    const {
-      currentPage,
-      reviewsStart,
-      reviewsEnd
-    } = this.state;
-
-    console.log('value: ', value)
-    console.log('currentPage: ', currentPage)
-
-    let newCurrentPage,
-      start,
-      end;
-
     if (value === 'arrow-forward') {
-      newCurrentPage = currentPage + 1;
-      start = reviewsStart + 7;
-      end = reviewsEnd + 7;
+      this.setState(state => {
+        return {
+          currentPage: state.currentPage + 1,
+          reviewsStart: state.reviewsStart + 7,
+          reviewsEnd: state.reviewsEnd + 7
+        }
+      })
     } else if (value === 'arrow-back') {
-      newCurrentPage = currentPage - 1;
-      start = reviewsStart - 7;
-      end = reviewsEnd - 7;
+      this.setState(state => {
+        return {
+          currentPage: state.currentPage - 1,
+          reviewsStart: state.reviewsStart - 7,
+          reviewsEnd: state.reviewsEnd - 7
+        }
+      })
     } else {
-      newCurrentPage = value;
-      end = value * 7;
-      start = end - 7;
+      const newCurrentPage = Number(value);
+      const end = value * 7;
+      const start = end - 7;
+      this.setState(state => {
+        return {
+          currentPage: newCurrentPage,
+          reviewsStart: start,
+          reviewsEnd: end
+        }
+      })
     }
-
-    return this.setState({
-      currentPage: newCurrentPage,
-      reviewsStart: start,
-      reviewsEnd: end
-    })
   }
 
   handleChangeInput(e) {
