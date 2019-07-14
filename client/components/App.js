@@ -224,19 +224,24 @@ class App extends React.Component {
     );
 
     const reviewsSearched = () => (
-      <React.Fragment>
+      <div>
         {reviewsFound.length === 0 && (
           <div>
-            None of our guests have mentioned “<strong>{textSearch}</strong>”
-            <button onClick={this.handleBackButton}>
-              Back to all reviews
-            </button>
+             None of our guests have mentioned “<strong>{textSearch}</strong>”
           </div>
         )}
         {reviewsFound.length > 0 && (
-          <Reviews reviews={reviewsFound} />
+          <div>
+            {reviewsFound.length} guests have mentioned “<strong>{textSearch}</strong>”
+          </div>
         )}
-      </React.Fragment>
+        <button onClick={this.handleBackButton}>
+          Back to all reviews
+        </button>
+        <Reviews reviews={reviewsFound} />
+      </div>
+
+
     );
 
     return (
@@ -265,3 +270,18 @@ class App extends React.Component {
 }
 
 export default App;
+
+// {reviewsFound.length === 0 && (
+//   <div>
+//     None of our guests have mentioned “<strong>{textSearch}</strong>”
+//     <button onClick={this.handleBackButton}>
+//       Back to all reviews
+//     </button>
+//   </div>
+// )}
+// {reviewsFound.length > 0 && (
+//   <React.Fragment>
+//     <Reviews reviews={reviewsFound} />
+//   </React.Fragment>
+
+// )}

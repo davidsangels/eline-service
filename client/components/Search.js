@@ -1,7 +1,7 @@
 import React from 'react';
 
 const styles = {
-  icon: {
+  iconSearch: {
     fontSize: '20px',
     verticalAlign: 'middle',
     fontWeight: '200',
@@ -50,7 +50,7 @@ const Search = ({handleSearch, handleChange, text}) => {
     <div>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
-          <ion-icon name="search" style={styles.icon}></ion-icon>
+          <ion-icon name="search" style={styles.iconSearch}></ion-icon>
           <input
             type='text'
             value={text}
