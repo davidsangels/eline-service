@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Review from './Review';import { statement } from '@babel/template';
-
+import Review from './Review';
 import Pagination from './Pagination';
 
 const styles = {
@@ -20,9 +19,6 @@ class Reviews extends React.Component {
       reviewsEnd: 7,
     };
     this.handleChangePage = this.handleChangePage.bind(this);
-    // this.handleSearchReviews = this.handleSearchReviews.bind(this);
-    // this.handleChangeInput = this.handleChangeInput.bind(this);
-    // this.handleBackButton = this.handleBackButton.bind(this);
   }
 
   handleChangePage(value) {

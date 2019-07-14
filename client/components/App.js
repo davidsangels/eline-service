@@ -166,7 +166,7 @@ class App extends React.Component {
           this.setState(state => {
             return {
               reviewsFound: data,
-              textSearch: '',
+              // textSearch: '',
               showReviewsSearched: !state.showReviewsSearched
             }
           });
@@ -193,7 +193,10 @@ class App extends React.Component {
 
   handleBackButton() {
     this.setState(state => {
-      return {showReviewsSearched: !state.showReviewsSearched};
+      return {
+        showReviewsSearched: !state.showReviewsSearched,
+        textSearch: '',
+      };
     });
     this.getReviewsByPlace(this.state.currentPlace);
   }
@@ -214,24 +217,14 @@ class App extends React.Component {
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     const allReviews = () => (
-      <div>
+      <React.Fragment>
         <Attributes rating={ratingsByPlace}/>
-        <Reviews
-          reviews={reviewsByPlace}
-          // reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
-          // currentPage={currentPage}
-          // changePage={this.handleChangePage}
-        />
-        {/* <Pagination
-          currentPage={currentPage}
-          numBtns={numBtns}
-          changePage={this.handleChangePage}
-        /> */}
-      </div>
+        <Reviews reviews={reviewsByPlace} />
+      </React.Fragment>
     );
 
     const reviewsSearched = () => (
-      <div>
+      <React.Fragment>
         {reviewsFound.length === 0 && (
           <div>
             None of our guests have mentioned “<strong>{textSearch}</strong>”
@@ -241,18 +234,9 @@ class App extends React.Component {
           </div>
         )}
         {reviewsFound.length > 0 && (
-          <React.Fragment>
-            <Reviews
-              reviews={reviewsFound.slice(reviewsStart, reviewsEnd)}
-            />
-            <Pagination
-              currentPage={currentPage}
-              numBtns={numBtns}
-              changePage={this.handleChangePage}
-            />
-          </React.Fragment>
+          <Reviews reviews={reviewsFound} />
         )}
-      </div>
+      </React.Fragment>
     );
 
     return (
@@ -261,9 +245,7 @@ class App extends React.Component {
           <div>
             <div style={styles.divHeader}>
               <div style={styles.numReviews}>
-                <div>
-                  {reviewsByPlace.length} Reviews
-                </div>
+                <div>{reviewsByPlace.length} Reviews</div>
                 <Rating rating={ratingsByPlace.overall_avg}/>
               </div>
               <Search
