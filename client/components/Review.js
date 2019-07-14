@@ -2,9 +2,6 @@ import React from 'react';
 const moment = require('moment');
 
 const styles = {
-  divMain: {
-    // marginBottom: '48px'
-  },
   user: {
     height: '48px',
     width: '48px',
@@ -65,7 +62,7 @@ const Review = ({review}) => {
 
   return (
     <React.Fragment>
-      <div style={styles.divMain}>
+      <div>
         <div style={styles.user}>
           <img
             src={review.avatarUrl}
@@ -83,7 +80,15 @@ const Review = ({review}) => {
           </div>
         </div>
         <div style={styles.divText}>
-          {text}
+          {(text.length > 275) && (
+            <div>
+              {text.slice(0, 275)}...
+              <button>Read more</button>
+            </div>
+          )}
+          {text.length <= 275 && (
+            <div>{text}</div>
+          )}
         </div>
       </div>
       <hr style={styles.hr}/>
