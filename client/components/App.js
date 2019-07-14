@@ -121,16 +121,16 @@ class App extends React.Component {
           currentPage: state.currentPage + 1,
           reviewsStart: state.reviewsStart + 7,
           reviewsEnd: state.reviewsEnd + 7
-        }
-      })
+        };
+      });
     } else if (value === 'arrow-back') {
       this.setState(state => {
         return {
           currentPage: state.currentPage - 1,
           reviewsStart: state.reviewsStart - 7,
           reviewsEnd: state.reviewsEnd - 7
-        }
-      })
+        };
+      });
     } else {
       const newCurrentPage = Number(value);
       const end = value * 7;
@@ -140,8 +140,8 @@ class App extends React.Component {
           currentPage: newCurrentPage,
           reviewsStart: start,
           reviewsEnd: end
-        }
-      })
+        };
+      });
     }
   }
 
