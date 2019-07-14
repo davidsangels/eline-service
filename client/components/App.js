@@ -5,7 +5,7 @@ import Search from './Search';
 import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 
 const styles = {
   divModule: {
@@ -57,7 +57,7 @@ class App extends React.Component {
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
-    this.handleChangePage = this.handleChangePage.bind(this);
+    // this.handleChangePage = this.handleChangePage.bind(this);
     this.handleSearchReviews = this.handleSearchReviews.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleBackButton = this.handleBackButton.bind(this);
@@ -115,36 +115,36 @@ class App extends React.Component {
       });
   }
 
-  handleChangePage(value) {
-    if (value === 'arrow-forward') {
-      this.setState(state => {
-        return {
-          currentPage: state.currentPage + 1,
-          reviewsStart: state.reviewsStart + 7,
-          reviewsEnd: state.reviewsEnd + 7
-        };
-      });
-    } else if (value === 'arrow-back') {
-      this.setState(state => {
-        return {
-          currentPage: state.currentPage - 1,
-          reviewsStart: state.reviewsStart - 7,
-          reviewsEnd: state.reviewsEnd - 7
-        };
-      });
-    } else {
-      const newCurrentPage = Number(value);
-      const end = value * 7;
-      const start = end - 7;
-      this.setState(state => {
-        return {
-          currentPage: newCurrentPage,
-          reviewsStart: start,
-          reviewsEnd: end
-        };
-      });
-    }
-  }
+  // handleChangePage(value) {
+  //   if (value === 'arrow-forward') {
+  //     this.setState(state => {
+  //       return {
+  //         currentPage: state.currentPage + 1,
+  //         reviewsStart: state.reviewsStart + 7,
+  //         reviewsEnd: state.reviewsEnd + 7
+  //       };
+  //     });
+  //   } else if (value === 'arrow-back') {
+  //     this.setState(state => {
+  //       return {
+  //         currentPage: state.currentPage - 1,
+  //         reviewsStart: state.reviewsStart - 7,
+  //         reviewsEnd: state.reviewsEnd - 7
+  //       };
+  //     });
+  //   } else {
+  //     const newCurrentPage = Number(value);
+  //     const end = value * 7;
+  //     const start = end - 7;
+  //     this.setState(state => {
+  //       return {
+  //         currentPage: newCurrentPage,
+  //         reviewsStart: start,
+  //         reviewsEnd: end
+  //       };
+  //     });
+  //   }
+  // }
 
   handleChangeInput(e) {
     return this.setState({
@@ -217,13 +217,16 @@ class App extends React.Component {
       <div>
         <Attributes rating={ratingsByPlace}/>
         <Reviews
-          reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+          reviews={reviewsByPlace}
+          // reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+          // currentPage={currentPage}
+          // changePage={this.handleChangePage}
         />
-        <Pagination
+        {/* <Pagination
           currentPage={currentPage}
           numBtns={numBtns}
           changePage={this.handleChangePage}
-        />
+        /> */}
       </div>
     );
 
