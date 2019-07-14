@@ -52,6 +52,7 @@ class App extends React.Component {
       reviewsStart: 0,
       reviewsEnd: 7,
       textSearch: '',
+      reviewsFound: [],
       showReviewsSearched: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
@@ -162,27 +163,32 @@ class App extends React.Component {
         url: `/api/reviews/search/${query}`
       })
         .done(data => {
-          this.setState({
-            reviewsByPlace: data
+          this.setState(state => {
+            return {
+              reviewsFound: data,
+              textSearch: '',
+              showReviewsSearched: !state.showReviewsSearched
+            }
           });
         })
-        .done(() => {
-          if (this.state.reviewsByPlace.length === 0) {
-            this.setState(state => {
-              return {
-                showReviewsSearched: !state.showReviewsSearched
-              };
-            });
-          }
-        });
-    } else {
-      this.getReviewsByPlace(this.state.currentPlace);
-      this.setState(state => {
-        return {
-          showReviewsSearched: !state.showReviewsSearched
-        };
-      });
+        // .done(() => {
+        //   if (this.state.reviewsByPlace.length === 0) {
+        //     this.setState(state => {
+        //       return {
+        //         showReviewsSearched: !state.showReviewsSearched
+        //       };
+        //     });
+        //   }
+        // });
     }
+    // else {
+      // this.getReviewsByPlace(this.state.currentPlace);
+      // this.setState(state => {
+      //   return {
+      //     showReviewsSearched: !state.showReviewsSearched
+      //   };
+      // });
+    // }
   }
 
   handleBackButton() {
@@ -201,12 +207,13 @@ class App extends React.Component {
       reviewsStart,
       reviewsEnd,
       textSearch,
-      showReviewsSearched
+      showReviewsSearched,
+      reviewsFound
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
-    const reviewsDefault = () => (
+    const allReviews = () => (
       <div>
         <Attributes rating={ratingsByPlace}/>
         <Reviews
@@ -222,12 +229,26 @@ class App extends React.Component {
 
     const reviewsSearched = () => (
       <div>
-        <div>
-          None of our guests have mentioned “<strong>{textSearch}</strong>”
-        </div>
-        <button onClick={this.handleBackButton}>
-          Back to all reviews
-        </button>
+        {reviewsFound.length === 0 && (
+          <div>
+            None of our guests have mentioned “<strong>{textSearch}</strong>”
+            <button onClick={this.handleBackButton}>
+              Back to all reviews
+            </button>
+          </div>
+        )}
+        {reviewsFound.length > 0 && (
+          <React.Fragment>
+            <Reviews
+              reviews={reviewsFound.slice(reviewsStart, reviewsEnd)}
+            />
+            <Pagination
+              currentPage={currentPage}
+              numBtns={numBtns}
+              changePage={this.handleChangePage}
+            />
+          </React.Fragment>
+        )}
       </div>
     );
 
@@ -249,7 +270,7 @@ class App extends React.Component {
               />
             </div>
             <hr style={styles.hr}/>
-            {!showReviewsSearched && reviewsDefault()}
+            {!showReviewsSearched && allReviews()}
             {showReviewsSearched && reviewsSearched()}
           </div>
         )}
