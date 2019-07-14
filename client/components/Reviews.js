@@ -64,11 +64,13 @@ class Reviews extends React.Component {
             <Review review={review} key={review.id} />
           ))}
         </div>
-        <Pagination
-          currentPage={currentPage}
-          numBtns={numBtns}
-          changePage={this.handleChangePage}
-        />
+        {reviews.length > 7 && (
+          <Pagination
+            currentPage={currentPage}
+            numBtns={numBtns}
+            changePage={this.handleChangePage}
+          />
+        )}
       </React.Fragment>
     );
   }

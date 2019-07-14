@@ -5,7 +5,6 @@ import Search from './Search';
 import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
-// import Pagination from './Pagination';
 
 const styles = {
   divModule: {
@@ -43,21 +42,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeBtn: 1,
       currentPlace: null,
       places: [],
       reviewsByPlace: [],
       ratingsByPlace: [],
-      currentPage: 1,
-      reviewsStart: 0,
-      reviewsEnd: 7,
       textSearch: '',
       reviewsFound: [],
       showReviewsSearched: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
-    // this.handleChangePage = this.handleChangePage.bind(this);
     this.handleSearchReviews = this.handleSearchReviews.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleBackButton = this.handleBackButton.bind(this);
@@ -115,37 +109,6 @@ class App extends React.Component {
       });
   }
 
-  // handleChangePage(value) {
-  //   if (value === 'arrow-forward') {
-  //     this.setState(state => {
-  //       return {
-  //         currentPage: state.currentPage + 1,
-  //         reviewsStart: state.reviewsStart + 7,
-  //         reviewsEnd: state.reviewsEnd + 7
-  //       };
-  //     });
-  //   } else if (value === 'arrow-back') {
-  //     this.setState(state => {
-  //       return {
-  //         currentPage: state.currentPage - 1,
-  //         reviewsStart: state.reviewsStart - 7,
-  //         reviewsEnd: state.reviewsEnd - 7
-  //       };
-  //     });
-  //   } else {
-  //     const newCurrentPage = Number(value);
-  //     const end = value * 7;
-  //     const start = end - 7;
-  //     this.setState(state => {
-  //       return {
-  //         currentPage: newCurrentPage,
-  //         reviewsStart: start,
-  //         reviewsEnd: end
-  //       };
-  //     });
-  //   }
-  // }
-
   handleChangeInput(e) {
     return this.setState({
       textSearch: e.target.value
@@ -166,29 +129,11 @@ class App extends React.Component {
           this.setState(state => {
             return {
               reviewsFound: data,
-              // textSearch: '',
               showReviewsSearched: !state.showReviewsSearched
             }
           });
         })
-        // .done(() => {
-        //   if (this.state.reviewsByPlace.length === 0) {
-        //     this.setState(state => {
-        //       return {
-        //         showReviewsSearched: !state.showReviewsSearched
-        //       };
-        //     });
-        //   }
-        // });
     }
-    // else {
-      // this.getReviewsByPlace(this.state.currentPlace);
-      // this.setState(state => {
-      //   return {
-      //     showReviewsSearched: !state.showReviewsSearched
-      //   };
-      // });
-    // }
   }
 
   handleBackButton() {
@@ -206,15 +151,10 @@ class App extends React.Component {
       currentPlace,
       reviewsByPlace,
       ratingsByPlace,
-      currentPage,
-      reviewsStart,
-      reviewsEnd,
       textSearch,
       showReviewsSearched,
       reviewsFound
     } = this.state;
-
-    const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
     const allReviews = () => (
       <React.Fragment>
@@ -240,8 +180,6 @@ class App extends React.Component {
         </button>
         <Reviews reviews={reviewsFound} />
       </div>
-
-
     );
 
     return (
@@ -270,18 +208,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// {reviewsFound.length === 0 && (
-//   <div>
-//     None of our guests have mentioned “<strong>{textSearch}</strong>”
-//     <button onClick={this.handleBackButton}>
-//       Back to all reviews
-//     </button>
-//   </div>
-// )}
-// {reviewsFound.length > 0 && (
-//   <React.Fragment>
-//     <Reviews reviews={reviewsFound} />
-//   </React.Fragment>
-
-// )}
