@@ -1,34 +1,5 @@
 import React from 'react';
-var moment = require('moment');
-
-const Review = ({review}) => {
-  const createdAt = moment(review.createdAt).format('MMMM YYYY')
-  const text = review.text.charAt(0).toUpperCase()+review.text.slice(1)
-
-  return (
-    <div style={styles.divMain}>
-      <div style={styles.user}>
-        <img
-          src={review.avatarUrl}
-          height="50"
-          width="50"
-          style={styles.img}
-        />
-        <div style={styles.userInfo}>
-          <div style={styles.userName}>
-            {review.username}
-          </div>
-          <div style={styles.createdAt}>
-            {createdAt}
-          </div>
-        </div>
-      </div>
-      <div style={styles.divText}>
-        {text}
-      </div>
-    </div>
-  );
-};
+const moment = require('moment');
 
 const styles = {
   divMain: {
@@ -78,6 +49,35 @@ const styles = {
     lineHeight: '1.375em',
     color: '#484848',
   }
-}
+};
+
+const Review = ({review}) => {
+  const createdAt = moment(review.createdAt).format('MMMM YYYY');
+  const text = review.text.charAt(0).toUpperCase() + review.text.slice(1);
+
+  return (
+    <div style={styles.divMain}>
+      <div style={styles.user}>
+        <img
+          src={review.avatarUrl}
+          height="50"
+          width="50"
+          style={styles.img}
+        />
+        <div style={styles.userInfo}>
+          <div style={styles.userName}>
+            {review.username}
+          </div>
+          <div style={styles.createdAt}>
+            {createdAt}
+          </div>
+        </div>
+      </div>
+      <div style={styles.divText}>
+        {text}
+      </div>
+    </div>
+  );
+};
 
 export default Review;

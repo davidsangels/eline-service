@@ -1,24 +1,5 @@
 import React from 'react';
 
-const Search = ({handleSearch, handleChange, text}) => {
-  return (
-    <div>
-      <form onSubmit={(e) => handleSearch(e)}>
-        <div style={styles.divInput}>
-          <ion-icon name="search" style={styles.icon}></ion-icon>
-          <input
-            type='text'
-            value={text}
-            placeholder='Search reviews'
-            onChange={(e) => handleChange(e)}
-            style={styles.input}
-          />
-        </div>
-    </form>
-    </div>
-  );
-};
-
 const styles = {
   icon: {
     fontSize: '20px',
@@ -61,8 +42,26 @@ const styles = {
     borderStyle: 'solid',
     borderColor: 'rgb(235, 235, 235)',
     borderRadius: '4px',
-  },
+  }
+};
 
-}
+const Search = ({handleSearch, handleChange, text}) => {
+  return (
+    <div>
+      <form onSubmit={(e) => handleSearch(e)}>
+        <div style={styles.divInput}>
+          <ion-icon name="search" style={styles.icon}></ion-icon>
+          <input
+            type='text'
+            value={text}
+            placeholder='Search reviews'
+            onChange={(e) => handleChange(e)}
+            style={styles.input}
+          />
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default Search;

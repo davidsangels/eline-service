@@ -1,55 +1,5 @@
 import React from 'react';
-import pagination from '../helpers/pagination.js'
-
-// max 7 reviews per page
-const Pagination = ({
-  currentPage,
-  numBtns,
-  changePage
-}) => {
-  const buttons = pagination(currentPage, numBtns)
-  return (
-    <div style={styles.divMain}>
-      {currentPage != 1 && (
-        <button
-          type='button'
-          value='before'
-          onClick={(e) => changePage(e.target.value)}
-          style={styles.btnBackAndGo}
-        >
-          <ion-icon name="arrow-back"></ion-icon>
-        </button>
-      )}
-      {buttons.map(btn => {
-        if (btn === '...'){
-          return (
-            <span key={btn}>{btn}</span>
-          )
-        } else {
-          return (
-            <button
-              type='button'
-              value={btn}
-              key={btn}
-              style={btn == currentPage ? styles.activeBtn : styles.btnDefault}
-              onClick={(e) => changePage(e.target.value)}
-            >{btn}</button>
-          )
-        }
-      })}
-      {currentPage != numBtns && (
-        <button
-          type='button'
-          value='next'
-          onClick={(e) => changePage(e.target.value)}
-          style={styles.btnBackAndGo}
-        >
-          <ion-icon name="arrow-forward"></ion-icon>
-        </button>
-      )}
-    </div>
-  );
-};
+import pagination from '../helpers/pagination.js';
 
 const styles = {
   divMain: {
@@ -95,6 +45,57 @@ const styles = {
     fontSize: '14px',
     fontWeight: '200',
   }
-}
+};
+
+// max 7 reviews per page
+const Pagination = ({
+  currentPage,
+  numBtns,
+  changePage
+}) => {
+  const buttons = pagination(currentPage, numBtns);
+
+  return (
+    <div style={styles.divMain}>
+      {currentPage !== 1 && (
+        <button
+          type='button'
+          value='before'
+          onClick={(e) => changePage(e.target.value)}
+          style={styles.btnBackAndGo}
+        >
+          <ion-icon name="arrow-back"></ion-icon>
+        </button>
+      )}
+      {buttons.map(btn => {
+        if (btn === '...') {
+          return (
+            <span key={btn}>{btn}</span>
+          );
+        } else {
+          return (
+            <button
+              type='button'
+              value={btn}
+              key={btn}
+              style={btn === currentPage ? styles.activeBtn : styles.btnDefault}
+              onClick={(e) => changePage(e.target.value)}
+            >{btn}</button>
+          );
+        }
+      })}
+      {currentPage !== numBtns && (
+        <button
+          type='button'
+          value='next'
+          onClick={(e) => changePage(e.target.value)}
+          style={styles.btnBackAndGo}
+        >
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      )}
+    </div>
+  );
+};
 
 export default Pagination;

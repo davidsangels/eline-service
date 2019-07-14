@@ -1,6 +1,12 @@
 import React from 'react';
 import Review from './Review';
 
+const styles = {
+  divMain: {
+    marginTop: '16px'
+  }
+};
+
 const Reviews = ({reviews}) => {
   return (
     <div style={styles.divMain}>
@@ -10,11 +16,5 @@ const Reviews = ({reviews}) => {
     </div>
   );
 };
-
-const styles = {
-  divMain: {
-    marginTop: '16px'
-  }
-}
 
 export default Reviews;

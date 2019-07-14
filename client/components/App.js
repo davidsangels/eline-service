@@ -7,6 +7,38 @@ import Attributes from './Attributes';
 import Reviews from './Reviews';
 import Pagination from './Pagination';
 
+const styles = {
+  divModule: {
+    width: '60%'
+  },
+  divHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: '16px'
+  },
+  hr: {
+    fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
+    fontSize: '14px',
+    lineHeight: '1px',
+    color: 'rgb(235, 235, 235)',
+    margin: '16px 0 16px 0',
+    opacity: '0.2'
+  },
+  numReviews: {
+    display: 'flex',
+    flex: '1',
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '24px',
+    fontWeight: '600',
+    lineHeight: '1.25em',
+    color: '#484848',
+    paddingTop: '2px',
+    paddingBottom: '2px',
+  }
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -30,138 +62,134 @@ class App extends React.Component {
     this.handleBackButton = this.handleBackButton.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     // logs all idPlaces
     $.ajax({
       type: 'GET',
       url: '/api/places'
     })
-    .done(places => {
-      const idPlaces = places.reduce((acc, cur) => {
-        return acc.concat(cur.idPlace)
-      }, []);
+      .done(places => {
+        const idPlaces = places.reduce((acc, cur) => {
+          return acc.concat(cur.idPlace);
+        }, []);
 
-      console.log(
-        "%c These are the idPlaces created in db: ",
-        "color: blue; font-size: 16px",
-        idPlaces,
-      );
+        console.log(
+          '%c These are the idPlaces created in db: ',
+          'color: blue; font-size: 16px',
+          idPlaces
+        );
 
-      return this.setState({
-        currentPlace: idPlaces[0],
-        places: idPlaces
+        return this.setState({
+          currentPlace: idPlaces[0],
+          places: idPlaces
+        });
       })
-    })
-    .done(() => {
-      this.getReviewsByPlace(this.state.currentPlace)
-      this.getRatingsByPlace(this.state.currentPlace)
-    })
+      .done(() => {
+        this.getReviewsByPlace(this.state.currentPlace);
+        this.getRatingsByPlace(this.state.currentPlace);
+      });
   }
 
-  getReviewsByPlace(id){
+  getReviewsByPlace(id) {
     $.ajax({
       type: 'GET',
       url: `/api/reviews/${id}`
     })
-    .done(data => {
-      return this.setState({
-        reviewsByPlace: data
-      })
-    })
+      .done(data => {
+        return this.setState({
+          reviewsByPlace: data
+        });
+      });
   }
 
-  getRatingsByPlace(id){
+  getRatingsByPlace(id) {
     $.ajax({
       type: 'GET',
       url: `/api/ratings/${id}`
     })
-    .done(data => {
-      return this.setState({
-        ratingsByPlace: data.reduce(cur => cur)
-      })
-    })
+      .done(data => {
+        return this.setState({
+          ratingsByPlace: data.reduce(cur => cur)
+        });
+      });
   }
 
-  handleChangePage(value){
+  handleChangePage(value) {
     const { currentPage, reviewsByPlace } = this.state;
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
 
-    if(value === 'next' && currentPage < numBtns){
+    if (value === 'next' && currentPage < numBtns) {
       return this.setState(state => {
         return {
           currentPage: state.currentPage + 1,
           reviewsStart: state.reviewsStart + 7,
           reviewsEnd: state.reviewsEnd + 7
-        }
-      })
-    }
-    else if (value === 'before' && currentPage >= 1){
+        };
+      });
+    } else if (value === 'before' && currentPage >= 1) {
       return this.setState(state => {
         return {
           currentPage: state.currentPage - 1,
           reviewsStart: state.reviewsStart - 7,
           reviewsEnd: state.reviewsEnd - 7
-        }
-      })
-    }
-    else {
+        };
+      });
+    } else {
       let end = value * 7;
       let start = end - 7;
       return this.setState({
         currentPage: value,
         reviewsStart: start,
         reviewsEnd: end
-      })
+      });
     }
   }
 
-  handleChangeInput(e){
-    console.log(e.target.value)
+  handleChangeInput(e) {
     return this.setState({
       textSearch: e.target.value
-    })
+    });
   }
 
-  handleSearchReviews(e){
-    e.preventDefault(e)
-    const query = this.state.textSearch
+  handleSearchReviews(e) {
+    e.preventDefault(e);
+    const query = this.state.textSearch;
 
     // ajax request to search query in db reviews model
-    if (query !== ''){
+    if (query !== '') {
       $.ajax({
         type: 'GET',
         url: `/api/reviews/search/${query}`
       })
-      .done(data => {
-        this.setState({
-          reviewsByPlace: data
+        .done(data => {
+          this.setState({
+            reviewsByPlace: data
+          });
         })
-      })
-      .done(() => {
-        if (this.state.reviewsByPlace.length === 0){
-          this.setState(state => {
-            return {
-              showNotFound: !state.showNotFound
-            }
-          })
-        }
-      })
-    }
-    else {
-      this.getReviewsByPlace(this.state.currentPlace)
+        .done(() => {
+          if (this.state.reviewsByPlace.length === 0) {
+            this.setState(state => {
+              return {
+                showNotFound: !state.showNotFound
+              };
+            });
+          }
+        });
+    } else {
+      this.getReviewsByPlace(this.state.currentPlace);
       this.setState(state => {
         return {
           showNotFound: !state.showNotFound
-        }
-      })
+        };
+      });
     }
   }
 
-  handleBackButton(){
+  handleBackButton() {
     this.setState(state => {
-      return {showNotFound: !state.showNotFound}
-    })
-    this.getReviewsByPlace(this.state.currentPlace)
+      return {showNotFound: !state.showNotFound};
+    });
+    this.getReviewsByPlace(this.state.currentPlace);
   }
 
   render() {
@@ -223,38 +251,6 @@ class App extends React.Component {
         )}
       </div>
     );
-  }
-}
-
-const styles = {
-  divModule: {
-    width: '60%'
-  },
-  divHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '16px'
-  },
-  hr: {
-    fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
-    fontSize: '14px',
-    lineHeight: '1px',
-    color: 'rgb(235, 235, 235)',
-    margin: '16px 0 16px 0',
-    opacity: '0.2'
-  },
-  numReviews: {
-    display: 'flex',
-    flex: '1',
-    margin: '0px',
-    wordWrap: 'break-word',
-    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    fontSize: '24px',
-    fontWeight: '600',
-    lineHeight: '1.25em',
-    color: '#484848',
-    paddingTop: '2px',
-    paddingBottom: '2px',
   }
 }
 

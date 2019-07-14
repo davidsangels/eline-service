@@ -1,23 +1,27 @@
 import React from 'react';
 
+const styles = {
+  divMain: {
+    marginLeft: '16px',
+    display: 'flex',
+    alignItems: 'center'
+  }
+};
+
 const Star = (type, index) => {
   const getStyle = () => {
-    const otherStyles = {
-      fontSize: 24
-    }
-    if (type === 'filled'){
+    if (type === 'filled') {
       // green color of airbnb star rating
-      return {fill: '#008489', ...otherStyles}
-    }
-    else if (type === 'partialFilled'){
+      return {fill: '#008489', fontSize: '24px'};
+    } else if (type === 'partialFilled') {
       // TODO: fill with the value of partialFilled
-      return {fill: '#008489', ...otherStyles}
-    }
-    else {
+      return {fill: '#008489', fontSize: '24px'};
+    } else {
       // grey color of airbnb star rating (similar)
-      return {fill: '#CECBCB', ...otherStyles}
+      return {fill: '#CECBCB', fontSize: '24px'};
     }
-  }
+  };
+
   return (
     <ion-icon
       name="star"
@@ -25,13 +29,13 @@ const Star = (type, index) => {
       style={getStyle()}
       key={`${type},${index}`}
     ></ion-icon>
-  )
-}
+  );
+};
 
 const Rating = ({rating}) => {
   const typeStars = ((value) => {
     const result = {};
-    if(value % 1 === 0){
+    if (value % 1 === 0) {
       result.notFilled = 5 - value;
       result.filled = 5 - result.notFilled;
       result.partialFilled = 0;
@@ -44,30 +48,22 @@ const Rating = ({rating}) => {
   })(rating);
 
   const buildStars = () => {
-    const stars = []
-    for (var key in typeStars){
+    const stars = [];
+    for (var key in typeStars) {
       const type = key;
-      const numStars = typeStars[key]
-      for (let i = 0; i < numStars; i++){
-        stars.push(Star(type, i))
+      const numStars = typeStars[key];
+      for (let i = 0; i < numStars; i++) {
+        stars.push(Star(type, i));
       }
     }
     return stars;
-  }
+  };
 
   return (
     <div style={styles.divMain}>
       {buildStars()}
     </div>
-  )
+  );
 };
-
-const styles={
-  divMain: {
-    marginLeft: '16px',
-    display: 'flex',
-    alignItems: 'center'
-  }
-}
 
 export default Rating;

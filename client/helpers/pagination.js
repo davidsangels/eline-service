@@ -1,15 +1,15 @@
 const pagination = (curPage, total) => {
-  var current = curPage,
-    last = total,
-    delta = 2,
-    left = current - delta,
-    right = current + delta + 1,
-    range = [],
-    rangeWithDots = [],
-    l;
+  let current = curPage;
+  let last = total;
+  let delta = 2;
+  let left = current - delta;
+  let right = current + delta + 1;
+  let range = [];
+  let rangeWithDots = [];
+  let l;
 
   for (let i = 1; i <= last; i++) {
-    if (i == 1 || i == last || i >= left && i < right) {
+    if (i === 1 || i === last || i >= left && i < right) {
       range.push(i);
     }
   }
@@ -27,6 +27,6 @@ const pagination = (curPage, total) => {
   }
 
   return rangeWithDots;
-}
+};
 
 export default pagination;

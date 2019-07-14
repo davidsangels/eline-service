@@ -8,7 +8,7 @@ const styles = {
     margin: '0 180px 0 180px',
     padding: '0 24px 0 24px'
   }
-}
+};
 
 ReactDOM.render(
   <div style={styles.divApp}>
