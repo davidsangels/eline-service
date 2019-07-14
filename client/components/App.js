@@ -195,6 +195,7 @@ class App extends React.Component {
                 text={textSearch}
               />
             </div>
+            <hr style={styles.hr}/>
             {!showNotFound && (
               <div>
                 <Attributes rating={ratingsByPlace}/>
@@ -232,7 +233,15 @@ const styles = {
   divHeader: {
     display: 'flex',
     alignItems: 'center',
-    margin: '16px 0 32px 0'
+    marginTop: '16px'
+  },
+  hr: {
+    fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
+    fontSize: '14px',
+    lineHeight: '1px',
+    color: 'rgb(235, 235, 235)',
+    margin: '16px 0 16px 0',
+    opacity: '0.2'
   },
   numReviews: {
     width: '66%',

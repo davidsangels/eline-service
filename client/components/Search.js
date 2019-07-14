@@ -60,7 +60,6 @@ const styles = {
     color: '#484848',
     fontWeight: '600',
     paddingLeft: '7px',
-
     paddingRight: '7px',
     borderWidth: '1px',
     borderStyle: 'solid',
