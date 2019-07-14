@@ -5,11 +5,11 @@ const Search = ({handleSearch, handleChange, text}) => {
     <div>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
-          {/* <ion-icon name="search" style={styles.icon}></ion-icon> */}
+          <ion-icon name="search" style={styles.icon}></ion-icon>
           <input
-            type="text"
+            type='text'
             value={text}
-            placeholder="Search reviews"
+            placeholder='Search reviews'
             onChange={(e) => handleChange(e)}
             style={styles.input}
           />
