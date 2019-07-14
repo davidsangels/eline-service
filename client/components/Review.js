@@ -70,7 +70,7 @@ const styles = {
 };
 
 class Review extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showMoreText: false
@@ -113,7 +113,7 @@ class Review extends React.Component {
                     {text.slice(0, 275)}...
                     <button
                       onClick={() => this.setState(state => {
-                        return { showMoreText: !state.showMoreText }
+                        return { showMoreText: !state.showMoreText };
                       })}
                       style={styles.button}
                     >Read more</button>
@@ -126,8 +126,8 @@ class Review extends React.Component {
         </div>
         <hr style={styles.hr}/>
       </React.Fragment>
-    )
+    );
   }
-};
+}
 
 export default Review;
