@@ -56,44 +56,64 @@ const styles = {
   },
 };
 
-const Review = ({review}) => {
-  const createdAt = moment(review.createdAt).format('MMMM YYYY');
-  const text = review.text.charAt(0).toUpperCase() + review.text.slice(1);
+class Review extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      showMoreText: false
+    };
+  }
 
-  return (
-    <React.Fragment>
-      <div>
-        <div style={styles.user}>
-          <img
-            src={review.avatarUrl}
-            height="50"
-            width="50"
-            style={styles.img}
-          />
-          <div style={styles.userInfo}>
-            <div style={styles.userName}>
-              {review.username}
-            </div>
-            <div style={styles.createdAt}>
-              {createdAt}
+  render() {
+    const { review } = this.props;
+    const { showMoreText } = this.state;
+    const createdAt = moment(review.createdAt).format('MMMM YYYY');
+    const text = review.text.charAt(0).toUpperCase() + review.text.slice(1);
+
+    return (
+      <React.Fragment>
+        <div>
+          <div style={styles.user}>
+            <img
+              src={review.avatarUrl}
+              height="50"
+              width="50"
+              style={styles.img}
+            />
+            <div style={styles.userInfo}>
+              <div style={styles.userName}>
+                {review.username}
+              </div>
+              <div style={styles.createdAt}>
+                {createdAt}
+              </div>
             </div>
           </div>
+          <div style={styles.divText}>
+            {showMoreText && (
+              <div>{text}</div>
+            )}
+            {!showMoreText && (
+              <React.Fragment>
+                {text.length > 275 && (
+                  <div>
+                    {text.slice(0, 275)}...
+                    <button onClick={() => this.setState(state => {
+                      return { showMoreText: !state.showMoreText }
+                    })}>
+                      Read more
+                    </button>
+                  </div>
+                )}
+                {text.length <= 275 && text}
+              </React.Fragment>
+            )}
+          </div>
         </div>
-        <div style={styles.divText}>
-          {(text.length > 275) && (
-            <div>
-              {text.slice(0, 275)}...
-              <button>Read more</button>
-            </div>
-          )}
-          {text.length <= 275 && (
-            <div>{text}</div>
-          )}
-        </div>
-      </div>
-      <hr style={styles.hr}/>
-    </React.Fragment>
-  );
+        <hr style={styles.hr}/>
+      </React.Fragment>
+    )
+  }
 };
 
 export default Review;
