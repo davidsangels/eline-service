@@ -60,8 +60,8 @@ const Pagination = ({
       {currentPage !== 1 && (
         <button
           type='button'
-          value='before'
-          onClick={(e) => changePage(e.target.value)}
+          name='arrow-back'
+          onClick={(e) => changePage(e.target.name)}
           style={styles.btnBackAndGo}
         >
           <ion-icon name="arrow-back"></ion-icon>
@@ -87,9 +87,9 @@ const Pagination = ({
       {currentPage !== numBtns && (
         <button
           type='button'
-          value='next'
-          onClick={(e) => changePage(e.target.value)}
+          onClick={(e) => changePage(e.target.name)}
           style={styles.btnBackAndGo}
+          name='arrow-forward'
         >
           <ion-icon name="arrow-forward"></ion-icon>
         </button>

@@ -52,7 +52,7 @@ class App extends React.Component {
       reviewsStart: 0,
       reviewsEnd: 7,
       textSearch: '',
-      showNotFound: false
+      showReviewsSearched: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
@@ -115,19 +115,16 @@ class App extends React.Component {
   }
 
   handleChangePage(value) {
-    const { currentPage, reviewsByPlace } = this.state;
-    const numBtns = Math.ceil(reviewsByPlace.length / 7);
-
-    if (value === 'next' && currentPage < numBtns) {
-      return this.setState(state => {
+    if (value === 'arrow-forward') {
+      this.setState(state => {
         return {
           currentPage: state.currentPage + 1,
           reviewsStart: state.reviewsStart + 7,
           reviewsEnd: state.reviewsEnd + 7
         };
       });
-    } else if (value === 'before' && currentPage >= 1) {
-      return this.setState(state => {
+    } else if (value === 'arrow-back') {
+      this.setState(state => {
         return {
           currentPage: state.currentPage - 1,
           reviewsStart: state.reviewsStart - 7,
@@ -135,12 +132,15 @@ class App extends React.Component {
         };
       });
     } else {
-      let end = value * 7;
-      let start = end - 7;
-      return this.setState({
-        currentPage: value,
-        reviewsStart: start,
-        reviewsEnd: end
+      const newCurrentPage = Number(value);
+      const end = value * 7;
+      const start = end - 7;
+      this.setState(state => {
+        return {
+          currentPage: newCurrentPage,
+          reviewsStart: start,
+          reviewsEnd: end
+        };
       });
     }
   }
@@ -170,7 +170,7 @@ class App extends React.Component {
           if (this.state.reviewsByPlace.length === 0) {
             this.setState(state => {
               return {
-                showNotFound: !state.showNotFound
+                showReviewsSearched: !state.showReviewsSearched
               };
             });
           }
@@ -179,7 +179,7 @@ class App extends React.Component {
       this.getReviewsByPlace(this.state.currentPlace);
       this.setState(state => {
         return {
-          showNotFound: !state.showNotFound
+          showReviewsSearched: !state.showReviewsSearched
         };
       });
     }
@@ -187,7 +187,7 @@ class App extends React.Component {
 
   handleBackButton() {
     this.setState(state => {
-      return {showNotFound: !state.showNotFound};
+      return {showReviewsSearched: !state.showReviewsSearched};
     });
     this.getReviewsByPlace(this.state.currentPlace);
   }
@@ -201,10 +201,35 @@ class App extends React.Component {
       reviewsStart,
       reviewsEnd,
       textSearch,
-      showNotFound
+      showReviewsSearched
     } = this.state;
 
     const numBtns = Math.ceil(reviewsByPlace.length / 7);
+
+    const reviewsDefault = () => (
+      <div>
+        <Attributes rating={ratingsByPlace}/>
+        <Reviews
+          reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
+        />
+        <Pagination
+          currentPage={currentPage}
+          numBtns={numBtns}
+          changePage={this.handleChangePage}
+        />
+      </div>
+    );
+
+    const reviewsSearched = () => (
+      <div>
+        <div>
+          None of our guests have mentioned “<strong>{textSearch}</strong>”
+        </div>
+        <button onClick={this.handleBackButton}>
+          Back to all reviews
+        </button>
+      </div>
+    );
 
     return (
       <div style={styles.divModule}>
@@ -224,29 +249,8 @@ class App extends React.Component {
               />
             </div>
             <hr style={styles.hr}/>
-            {!showNotFound && (
-              <div>
-                <Attributes rating={ratingsByPlace}/>
-                <Reviews
-                  reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
-                />
-                <Pagination
-                  currentPage={currentPage}
-                  numBtns={numBtns}
-                  changePage={this.handleChangePage}
-                />
-              </div>
-            )}
-            {showNotFound && (
-              <div>
-                <div>
-                  None of our guests have mentioned “<strong>{textSearch}</strong>”
-                </div>
-                <button onClick={this.handleBackButton}>
-                  Back to all reviews
-                </button>
-              </div>
-            )}
+            {!showReviewsSearched && reviewsDefault()}
+            {showReviewsSearched && reviewsSearched()}
           </div>
         )}
       </div>
