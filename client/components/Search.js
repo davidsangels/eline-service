@@ -2,7 +2,7 @@ import React from 'react';
 
 const Search = ({handleSearch, handleChange, text}) => {
   return (
-    <div style={styles.form}>
+    <div>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
           {/* <ion-icon name="search" style={styles.icon}></ion-icon> */}
@@ -13,7 +13,6 @@ const Search = ({handleSearch, handleChange, text}) => {
             onChange={(e) => handleChange(e)}
             style={styles.input}
           />
-
         </div>
     </form>
     </div>
@@ -21,9 +20,6 @@ const Search = ({handleSearch, handleChange, text}) => {
 };
 
 const styles = {
-  form: {
-    width: '33%',
-  },
   icon: {
     fontSize: '20px',
     verticalAlign: 'middle',

@@ -244,8 +244,8 @@ const styles = {
     opacity: '0.2'
   },
   numReviews: {
-    width: '66%',
     display: 'flex',
+    flex: '1',
     margin: '0px',
     wordWrap: 'break-word',
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
