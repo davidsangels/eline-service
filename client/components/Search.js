@@ -5,7 +5,7 @@ const Search = ({handleSearch, handleChange, text}) => {
     <div style={styles.form}>
       <form onSubmit={(e) => handleSearch(e)}>
         <div style={styles.divInput}>
-          <ion-icon name="search" style={styles.icon}></ion-icon>
+          {/* <ion-icon name="search" style={styles.icon}></ion-icon> */}
           <input
             type="text"
             value={text}
@@ -33,6 +33,8 @@ const styles = {
     fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
     textTransform: 'undefined',
     color: '#484848',
+    visibility: 'visible',
+    height: '34px'
   },
   divInput: {
     display: 'contents',
@@ -45,7 +47,8 @@ const styles = {
     color: '#484848',
     paddingTop: 'undefined',
     paddingBottom: 'undefined',
-    marginBottom: '8px'
+    marginBottom: '8px',
+    width: '100%',
   },
   input: {
     backgroundColor: 'transparent',
@@ -57,9 +60,12 @@ const styles = {
     color: '#484848',
     fontWeight: '600',
     paddingLeft: '7px',
+
     paddingRight: '7px',
-    border: 'none',
-    borderColor: 'transparent',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: 'rgb(235, 235, 235)',
+    borderRadius: '4px',
   },
 
 }
