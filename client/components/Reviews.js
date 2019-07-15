@@ -2,12 +2,7 @@ import React from 'react';
 
 import Review from './Review';
 import Pagination from './Pagination';
-
-const styles = {
-  divMain: {
-    marginTop: '16px'
-  }
-};
+import css from '../styles/reviews.css'
 
 class Reviews extends React.Component {
   constructor(props){
@@ -59,7 +54,7 @@ class Reviews extends React.Component {
 
     return (
       <React.Fragment>
-        <div style={styles.divMain}>
+        <div className='main-reviews'>
           {reviews.slice(reviewsStart, reviewsEnd).map(review => (
             <Review review={review} key={review.id} />
           ))}
