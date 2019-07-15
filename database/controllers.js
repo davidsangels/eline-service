@@ -30,9 +30,10 @@ const getRatingsById = (id, callback) => {
   .catch(err => {callback(err)})
 }
 
-const searchReviews = (query, callback) => {
+const searchReviews = (idPlace, query, callback) => {
   Review.findAll({
     where: {
+      idPlace: idPlace,
       text: {
         [Op.substring]: `%${query}%`
       }

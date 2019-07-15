@@ -148,12 +148,13 @@ class App extends React.Component {
   handleSearchReviews(e) {
     e.preventDefault(e);
     const query = this.state.textSearch;
+    const { currentPlace } = this.state;
 
     // ajax request to search query in db reviews model
     if (query !== '') {
       $.ajax({
         type: 'GET',
-        url: `/api/reviews/search/${query}`
+        url: `/api/reviews/search/${currentPlace}/${query}`
       })
         .done(data => {
           this.setState(state => {
