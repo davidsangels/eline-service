@@ -8,5 +8,5 @@ ReactDOM.render(
   <div className='reviews-module'>
     <App/>
   </div>,
-  document.getElementById('app')
+  document.getElementById('reviews')
 );
