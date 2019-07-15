@@ -35,6 +35,36 @@ const styles = {
     color: '#484848',
     paddingTop: '2px',
     paddingBottom: '2px',
+  },
+  divTextSearch: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  spanTextSearch: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '1.2857142857142858em',
+    color: '#484848',
+  },
+  buttonAllReviews: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '14px',
+    fontWeight: '200',
+    lineHeight: '1.28em',
+    color: '#008489',
+    textDecoration: 'none',
+    background: 'transparent',
+    border: '0px',
+    cursor: 'pointer',
+    margin: '0px',
+    padding: '0px',
+    userSelect: 'auto',
+    textAlign: 'left',
   }
 };
 
@@ -164,22 +194,28 @@ class App extends React.Component {
     );
 
     const reviewsSearched = () => (
-      <div>
-        {reviewsFound.length === 0 && (
-          <div>
-             None of our guests have mentioned “<strong>{textSearch}</strong>”
-          </div>
-        )}
-        {reviewsFound.length > 0 && (
-          <div>
-            {reviewsFound.length} guests have mentioned “<strong>{textSearch}</strong>”
-          </div>
-        )}
-        <button onClick={this.handleBackButton}>
-          Back to all reviews
-        </button>
+      <React.Fragment>
+        <div style={styles.divTextSearch}>
+          {reviewsFound.length === 0 && (
+            <span style={styles.spanTextSearch}>
+              None of our guests have mentioned “<strong>{textSearch}</strong>”
+            </span>
+          )}
+          {reviewsFound.length > 0 && (
+            <span style={styles.spanTextSearch}>
+              {reviewsFound.length} guests have mentioned “<strong>{textSearch}</strong>”
+            </span>
+          )}
+          <button
+            onClick={this.handleBackButton}
+            style={styles.buttonAllReviews}
+          >
+            Back to all reviews
+          </button>
+        </div>
+        <hr style={styles.hr}/>
         <Reviews reviews={reviewsFound} />
-      </div>
+      </React.Fragment>
     );
 
     return (
