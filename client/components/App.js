@@ -5,7 +5,6 @@ import Search from './Search';
 import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
-import Pagination from './Pagination';
 
 const styles = {
   divModule: {
@@ -36,6 +35,36 @@ const styles = {
     color: '#484848',
     paddingTop: '2px',
     paddingBottom: '2px',
+  },
+  divTextSearch: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  spanTextSearch: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '1.2857142857142858em',
+    color: '#484848',
+  },
+  buttonAllReviews: {
+    margin: '0px',
+    wordWrap: 'break-word',
+    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
+    fontSize: '14px',
+    fontWeight: '200',
+    lineHeight: '1.28em',
+    color: '#008489',
+    textDecoration: 'none',
+    background: 'transparent',
+    border: '0px',
+    cursor: 'pointer',
+    margin: '0px',
+    padding: '0px',
+    userSelect: 'auto',
+    textAlign: 'left',
   }
 };
 
@@ -43,20 +72,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeBtn: 1,
       currentPlace: null,
       places: [],
       reviewsByPlace: [],
       ratingsByPlace: [],
-      currentPage: 1,
-      reviewsStart: 0,
-      reviewsEnd: 7,
       textSearch: '',
+      reviewsFound: [],
       showReviewsSearched: false
     };
     this.getReviewsByPlace = this.getReviewsByPlace.bind(this);
     this.getRatingsByPlace = this.getRatingsByPlace.bind(this);
-    this.handleChangePage = this.handleChangePage.bind(this);
     this.handleSearchReviews = this.handleSearchReviews.bind(this);
     this.handleChangeInput = this.handleChangeInput.bind(this);
     this.handleBackButton = this.handleBackButton.bind(this);
@@ -114,37 +139,6 @@ class App extends React.Component {
       });
   }
 
-  handleChangePage(value) {
-    if (value === 'arrow-forward') {
-      this.setState(state => {
-        return {
-          currentPage: state.currentPage + 1,
-          reviewsStart: state.reviewsStart + 7,
-          reviewsEnd: state.reviewsEnd + 7
-        };
-      });
-    } else if (value === 'arrow-back') {
-      this.setState(state => {
-        return {
-          currentPage: state.currentPage - 1,
-          reviewsStart: state.reviewsStart - 7,
-          reviewsEnd: state.reviewsEnd - 7
-        };
-      });
-    } else {
-      const newCurrentPage = Number(value);
-      const end = value * 7;
-      const start = end - 7;
-      this.setState(state => {
-        return {
-          currentPage: newCurrentPage,
-          reviewsStart: start,
-          reviewsEnd: end
-        };
-      });
-    }
-  }
-
   handleChangeInput(e) {
     return this.setState({
       textSearch: e.target.value
@@ -154,40 +148,31 @@ class App extends React.Component {
   handleSearchReviews(e) {
     e.preventDefault(e);
     const query = this.state.textSearch;
+    const { currentPlace } = this.state;
 
     // ajax request to search query in db reviews model
     if (query !== '') {
       $.ajax({
         type: 'GET',
-        url: `/api/reviews/search/${query}`
+        url: `/api/reviews/search/${currentPlace}/${query}`
       })
         .done(data => {
-          this.setState({
-            reviewsByPlace: data
+          this.setState(state => {
+            return {
+              reviewsFound: data,
+              showReviewsSearched: !state.showReviewsSearched
+            }
           });
         })
-        .done(() => {
-          if (this.state.reviewsByPlace.length === 0) {
-            this.setState(state => {
-              return {
-                showReviewsSearched: !state.showReviewsSearched
-              };
-            });
-          }
-        });
-    } else {
-      this.getReviewsByPlace(this.state.currentPlace);
-      this.setState(state => {
-        return {
-          showReviewsSearched: !state.showReviewsSearched
-        };
-      });
     }
   }
 
   handleBackButton() {
     this.setState(state => {
-      return {showReviewsSearched: !state.showReviewsSearched};
+      return {
+        showReviewsSearched: !state.showReviewsSearched,
+        textSearch: '',
+      };
     });
     this.getReviewsByPlace(this.state.currentPlace);
   }
@@ -197,38 +182,41 @@ class App extends React.Component {
       currentPlace,
       reviewsByPlace,
       ratingsByPlace,
-      currentPage,
-      reviewsStart,
-      reviewsEnd,
       textSearch,
-      showReviewsSearched
+      showReviewsSearched,
+      reviewsFound
     } = this.state;
 
-    const numBtns = Math.ceil(reviewsByPlace.length / 7);
-
-    const reviewsDefault = () => (
-      <div>
+    const allReviews = () => (
+      <React.Fragment>
         <Attributes rating={ratingsByPlace}/>
-        <Reviews
-          reviews={reviewsByPlace.slice(reviewsStart, reviewsEnd)}
-        />
-        <Pagination
-          currentPage={currentPage}
-          numBtns={numBtns}
-          changePage={this.handleChangePage}
-        />
-      </div>
+        <Reviews reviews={reviewsByPlace} />
+      </React.Fragment>
     );
 
     const reviewsSearched = () => (
-      <div>
-        <div>
-          None of our guests have mentioned “<strong>{textSearch}</strong>”
+      <React.Fragment>
+        <div style={styles.divTextSearch}>
+          {reviewsFound.length === 0 && (
+            <span style={styles.spanTextSearch}>
+              None of our guests have mentioned “<strong>{textSearch}</strong>”
+            </span>
+          )}
+          {reviewsFound.length > 0 && (
+            <span style={styles.spanTextSearch}>
+              {reviewsFound.length} guests have mentioned “<strong>{textSearch}</strong>”
+            </span>
+          )}
+          <button
+            onClick={this.handleBackButton}
+            style={styles.buttonAllReviews}
+          >
+            Back to all reviews
+          </button>
         </div>
-        <button onClick={this.handleBackButton}>
-          Back to all reviews
-        </button>
-      </div>
+        <hr style={styles.hr}/>
+        <Reviews reviews={reviewsFound} />
+      </React.Fragment>
     );
 
     return (
@@ -237,9 +225,7 @@ class App extends React.Component {
           <div>
             <div style={styles.divHeader}>
               <div style={styles.numReviews}>
-                <div>
-                  {reviewsByPlace.length} Reviews
-                </div>
+                <div>{reviewsByPlace.length} Reviews</div>
                 <Rating rating={ratingsByPlace.overall_avg}/>
               </div>
               <Search
@@ -249,7 +235,7 @@ class App extends React.Component {
               />
             </div>
             <hr style={styles.hr}/>
-            {!showReviewsSearched && reviewsDefault()}
+            {!showReviewsSearched && allReviews()}
             {showReviewsSearched && reviewsSearched()}
           </div>
         )}

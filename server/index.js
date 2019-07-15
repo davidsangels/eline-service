@@ -46,9 +46,9 @@ app.get('/api/ratings/:idPlace', (req, res) => {
   })
 })
 
-// Get all the reviews for a specific query
-app.get('/api/reviews/search/:query', (req, res) => {
-  searchReviews(req.params.query, (err, reviews) => {
+// Get all the reviews for a specific query and a specific idPlace
+app.get('/api/reviews/search/:idPlace/:query', (req, res) => {
+  searchReviews(req.params.idPlace, req.params.query, (err, reviews) => {
     if(err){
       console.log(err)
     }
