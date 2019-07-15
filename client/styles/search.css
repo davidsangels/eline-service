@@ -1,0 +1,44 @@
+.icon-search {
+  font-size: 20px;
+  vertical-align: middle;
+  font-weight: 200;
+  line-height: 22px;
+  letter-spacing: normal;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  text-transform: undefined;
+  color: #484848;
+  visibility: visible;
+  height: 34px;
+}
+
+.div-input {
+  display: contents;
+  background-color: #ffffff;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: normal;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  text-transform: undefined;
+  color: #484848;
+  padding-top: undefined;
+  padding-bottom: undefined;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+input {
+  background-color: transparent;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: normal;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  text-transform: undefined;
+  color: #484848;
+  font-weight: 600;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(235, 235, 235);
+  border-radius: 4px;
+}

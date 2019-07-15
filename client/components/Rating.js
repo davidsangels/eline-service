@@ -1,12 +1,6 @@
 import React from 'react';
 
-const styles = {
-  divMain: {
-    marginLeft: '16px',
-    display: 'flex',
-    alignItems: 'center'
-  }
-};
+import css from '../styles/rating.css';
 
 const Star = (type, index) => {
   const getStyle = () => {
@@ -60,7 +54,7 @@ const Rating = ({rating}) => {
   };
 
   return (
-    <div style={styles.divMain}>
+    <div className='main-rating'>
       {buildStars()}
     </div>
   );

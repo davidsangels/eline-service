@@ -5,68 +5,7 @@ import Search from './Search';
 import Rating from './Rating';
 import Attributes from './Attributes';
 import Reviews from './Reviews';
-
-const styles = {
-  divModule: {
-    width: '60%'
-  },
-  divHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '16px'
-  },
-  hr: {
-    fontFamily: 'Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif',
-    fontSize: '14px',
-    lineHeight: '1px',
-    color: 'rgb(235, 235, 235)',
-    margin: '16px 0 16px 0',
-    opacity: '0.2'
-  },
-  numReviews: {
-    display: 'flex',
-    flex: '1',
-    margin: '0px',
-    wordWrap: 'break-word',
-    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    fontSize: '24px',
-    fontWeight: '600',
-    lineHeight: '1.25em',
-    color: '#484848',
-    paddingTop: '2px',
-    paddingBottom: '2px',
-  },
-  divTextSearch: {
-    display: 'flex',
-    justifyContent: 'space-between'
-  },
-  spanTextSearch: {
-    margin: '0px',
-    wordWrap: 'break-word',
-    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    fontSize: '14px',
-    fontWeight: '400',
-    lineHeight: '1.2857142857142858em',
-    color: '#484848',
-  },
-  buttonAllReviews: {
-    margin: '0px',
-    wordWrap: 'break-word',
-    fontFamily: 'Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif',
-    fontSize: '14px',
-    fontWeight: '200',
-    lineHeight: '1.28em',
-    color: '#008489',
-    textDecoration: 'none',
-    background: 'transparent',
-    border: '0px',
-    cursor: 'pointer',
-    margin: '0px',
-    padding: '0px',
-    userSelect: 'auto',
-    textAlign: 'left',
-  }
-};
+import css from '../styles/app.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -196,35 +135,35 @@ class App extends React.Component {
 
     const reviewsSearched = () => (
       <React.Fragment>
-        <div style={styles.divTextSearch}>
+        <div className='textSearch'>
           {reviewsFound.length === 0 && (
-            <span style={styles.spanTextSearch}>
+            <span className='span-text-search'>
               None of our guests have mentioned “<strong>{textSearch}</strong>”
             </span>
           )}
           {reviewsFound.length > 0 && (
-            <span style={styles.spanTextSearch}>
+            <span className='span-text-search'>
               {reviewsFound.length} guests have mentioned “<strong>{textSearch}</strong>”
             </span>
           )}
           <button
             onClick={this.handleBackButton}
-            style={styles.buttonAllReviews}
+            className='btn-all-reviews'
           >
             Back to all reviews
           </button>
         </div>
-        <hr style={styles.hr}/>
+        <hr />
         <Reviews reviews={reviewsFound} />
       </React.Fragment>
     );
 
     return (
-      <div style={styles.divModule}>
+      <div className='app'>
         {currentPlace !== 'null' && (
           <div>
-            <div style={styles.divHeader}>
-              <div style={styles.numReviews}>
+            <div  className='header'>
+              <div className='numReviews'>
                 <div>{reviewsByPlace.length} Reviews</div>
                 <Rating rating={ratingsByPlace.overall_avg}/>
               </div>
@@ -234,7 +173,7 @@ class App extends React.Component {
                 text={textSearch}
               />
             </div>
-            <hr style={styles.hr}/>
+            <hr />
             {!showReviewsSearched && allReviews()}
             {showReviewsSearched && reviewsSearched()}
           </div>
