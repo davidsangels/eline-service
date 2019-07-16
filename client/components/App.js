@@ -27,6 +27,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log(location)
     // logs all idPlaces
     $.ajax({
       type: 'GET',
@@ -57,7 +58,7 @@ class App extends React.Component {
   getReviewsByPlace(id) {
     $.ajax({
       type: 'GET',
-      url: `/api/reviews/${id}`
+      url: `/reviews/${id}`
     })
       .done(data => {
         return this.setState({
@@ -69,7 +70,7 @@ class App extends React.Component {
   getRatingsByPlace(id) {
     $.ajax({
       type: 'GET',
-      url: `/api/ratings/${id}`
+      url: `/reviews/ratings/${id}`
     })
       .done(data => {
         return this.setState({
@@ -93,7 +94,7 @@ class App extends React.Component {
     if (query !== '') {
       $.ajax({
         type: 'GET',
-        url: `/api/reviews/search/${currentPlace}/${query}`
+        url: `/reviews/search/${currentPlace}/${query}`
       })
         .done(data => {
           this.setState(state => {
