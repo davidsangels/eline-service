@@ -2,10 +2,10 @@ import React from 'react';
 
 import Review from './Review';
 import Pagination from './Pagination';
-import css from '../styles/reviews.css'
+import css from '../styles/reviews.css';
 
 class Reviews extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       activeBtn: 1,
@@ -69,6 +69,6 @@ class Reviews extends React.Component {
       </React.Fragment>
     );
   }
-};
+}
 
 export default Reviews;

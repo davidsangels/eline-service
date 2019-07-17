@@ -2,14 +2,6 @@ const { Review, AverageRating } = require('./models.js')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
-const getAllPlaces = (callback) => {
-  AverageRating.findAll({
-    attributes: ['idPlace']
-  })
-  .then(data => {callback(null, data)})
-  .catch(err => {callback(err)})
-}
-
 const getReviewsById = (id, callback) => {
   Review.findAll({
     where: {
@@ -44,7 +36,6 @@ const searchReviews = (idPlace, query, callback) => {
 }
 
 module.exports = {
-  getAllPlaces,
   getReviewsById,
   getRatingsById,
   searchReviews

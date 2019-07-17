@@ -11,7 +11,7 @@
     "seed": "node database/seed.js",
     "test": "jest --watch",
     "dev-react": "webpack -d --watch",
-    "lint": "./node_modules/.bin/eslint client/**"
+    "lint": "./node_modules/.bin/eslint client"
   },
   "dependencies": {
     "express": "^4.17.1",

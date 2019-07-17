@@ -12,7 +12,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentPlace: null,
-      places: [],
       reviewsByPlace: [],
       ratingsByPlace: [],
       textSearch: '',
@@ -27,37 +26,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // logs all idPlaces
-    $.ajax({
-      type: 'GET',
-      url: '/api/places'
-    })
-      .done(places => {
-        const idPlaces = places.reduce((acc, cur) => {
-          return acc.concat(cur.idPlace);
-        }, []);
-
-        console.log(
-          '%c These are the idPlaces created in db: ',
-          'color: blue; font-size: 16px',
-          idPlaces
-        );
-
-        return this.setState({
-          currentPlace: idPlaces[0],
-          places: idPlaces
-        });
-      })
-      .done(() => {
-        this.getReviewsByPlace(this.state.currentPlace);
-        this.getRatingsByPlace(this.state.currentPlace);
-      });
+    const idPlace = Number(location.pathname.slice(1, -1));
+    this.getReviewsByPlace(idPlace);
+    this.getRatingsByPlace(idPlace);
+    this.setState({
+      currentPlace: idPlace
+    });
   }
 
   getReviewsByPlace(id) {
     $.ajax({
       type: 'GET',
-      url: `/api/reviews/${id}`
+      url: `/reviews/${id}`
     })
       .done(data => {
         return this.setState({
@@ -69,7 +49,7 @@ class App extends React.Component {
   getRatingsByPlace(id) {
     $.ajax({
       type: 'GET',
-      url: `/api/ratings/${id}`
+      url: `/reviews/ratings/${id}`
     })
       .done(data => {
         return this.setState({
@@ -93,16 +73,16 @@ class App extends React.Component {
     if (query !== '') {
       $.ajax({
         type: 'GET',
-        url: `/api/reviews/search/${currentPlace}/${query}`
+        url: `/reviews/search/${currentPlace}/${query}`
       })
         .done(data => {
           this.setState(state => {
             return {
               reviewsFound: data,
               showReviewsSearched: !state.showReviewsSearched
-            }
+            };
           });
-        })
+        });
     }
   }
 
@@ -158,11 +138,22 @@ class App extends React.Component {
       </React.Fragment>
     );
 
+    const notFoundPage = () => (
+      <div className='not-found'>
+        Sorry!  =(
+        <br />
+        This idPlace doesn't exist in our database.
+        <br />
+        Try an id from 1 to 5.
+      </div>
+    );
+
     return (
       <div className='app'>
+        {![1, 2, 3, 4, 5].includes(currentPlace) && notFoundPage()}
         {currentPlace !== 'null' && (
           <div>
-            <div  className='header'>
+            <div className='header'>
               <div className='numReviews'>
                 <div>{reviewsByPlace.length} Reviews</div>
                 <Rating rating={ratingsByPlace.overall_avg}/>

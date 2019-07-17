@@ -1,15 +1,17 @@
 const { Review, AverageRating } = require('./models.js')
 const faker = require('faker')
 
-const createPlaceIds = function(){
-  var placeIds = []
-  for (var i = 0; i < 5; i++){
-    placeIds.push(faker.random.number())
-  }
-  return placeIds
-}
+// const createPlaceIds = function(){
+//   var placeIds = []
+//   for (var i = 0; i < 5; i++){
+//     placeIds.push(faker.random.number())
+//   }
+//   return placeIds
+// }
 
-const placeIds = createPlaceIds()
+// const placeIds = createPlaceIds()
+
+const placeIds = [1,2,3,4,5]
 
 Review.sync({ force: true })
 .then(() => {
