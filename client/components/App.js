@@ -26,12 +26,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const idPlace = Number(location.pathname.slice(1,-1))
+    const idPlace = Number(location.pathname.slice(1, -1));
     this.getReviewsByPlace(idPlace);
     this.getRatingsByPlace(idPlace);
     this.setState({
       currentPlace: idPlace
-    })
+    });
   }
 
   getReviewsByPlace(id) {
@@ -80,9 +80,9 @@ class App extends React.Component {
             return {
               reviewsFound: data,
               showReviewsSearched: !state.showReviewsSearched
-            }
+            };
           });
-        })
+        });
     }
   }
 
@@ -140,7 +140,7 @@ class App extends React.Component {
 
     const notFoundPage = () => (
       <div className='not-found'>
-        Sorry! =(
+        Sorry!  =(
         <br />
         This idPlace doesn't exist in our database.
         <br />
@@ -150,10 +150,10 @@ class App extends React.Component {
 
     return (
       <div className='app'>
-        {![1,2,3,4,5].includes(currentPlace) && notFoundPage()}
+        {![1, 2, 3, 4, 5].includes(currentPlace) && notFoundPage()}
         {currentPlace !== 'null' && (
           <div>
-            <div  className='header'>
+            <div className='header'>
               <div className='numReviews'>
                 <div>{reviewsByPlace.length} Reviews</div>
                 <Rating rating={ratingsByPlace.overall_avg}/>
@@ -175,32 +175,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// componentDidMount() {
-//   console.log(location)
-//   // logs all idPlaces
-//   $.ajax({
-//     type: 'GET',
-//     url: '/api/places'
-//   })
-//     .done(places => {
-//       const idPlaces = places.reduce((acc, cur) => {
-//         return acc.concat(cur.idPlace);
-//       }, []);
-
-//       console.log(
-//         '%c These are the idPlaces created in db: ',
-//         'color: blue; font-size: 16px',
-//         idPlaces
-//       );
-
-//       return this.setState({
-//         currentPlace: idPlaces[0],
-//         places: idPlaces
-//       });
-//     })
-//     .done(() => {
-//       this.getReviewsByPlace(this.state.currentPlace);
-//       this.getRatingsByPlace(this.state.currentPlace);
-//     });
-// }

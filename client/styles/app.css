@@ -65,10 +65,11 @@ hr {
 }
 
 .not-found {
+  text-align: 'center';
   margin: 0px;
   word-wrap: break-word;
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.28em;
   color: #008489;
