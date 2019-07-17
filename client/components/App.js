@@ -12,7 +12,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentPlace: null,
-      places: [],
       reviewsByPlace: [],
       ratingsByPlace: [],
       textSearch: '',
@@ -27,32 +26,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(location)
-    // logs all idPlaces
-    $.ajax({
-      type: 'GET',
-      url: '/api/places'
+    const idPlace = Number(location.pathname.slice(1,-1))
+    this.getReviewsByPlace(idPlace);
+    this.getRatingsByPlace(idPlace);
+    this.setState({
+      currentPlace: idPlace
     })
-      .done(places => {
-        const idPlaces = places.reduce((acc, cur) => {
-          return acc.concat(cur.idPlace);
-        }, []);
-
-        console.log(
-          '%c These are the idPlaces created in db: ',
-          'color: blue; font-size: 16px',
-          idPlaces
-        );
-
-        return this.setState({
-          currentPlace: idPlaces[0],
-          places: idPlaces
-        });
-      })
-      .done(() => {
-        this.getReviewsByPlace(this.state.currentPlace);
-        this.getRatingsByPlace(this.state.currentPlace);
-      });
   }
 
   getReviewsByPlace(id) {
@@ -159,8 +138,19 @@ class App extends React.Component {
       </React.Fragment>
     );
 
+    const notFoundPage = () => (
+      <div className='not-found'>
+        Sorry! =(
+        <br />
+        This idPlace doesn't exist in our database.
+        <br />
+        Try an id from 1 to 5.
+      </div>
+    );
+
     return (
       <div className='app'>
+        {![1,2,3,4,5].includes(currentPlace) && notFoundPage()}
         {currentPlace !== 'null' && (
           <div>
             <div  className='header'>
@@ -185,3 +175,32 @@ class App extends React.Component {
 }
 
 export default App;
+
+// componentDidMount() {
+//   console.log(location)
+//   // logs all idPlaces
+//   $.ajax({
+//     type: 'GET',
+//     url: '/api/places'
+//   })
+//     .done(places => {
+//       const idPlaces = places.reduce((acc, cur) => {
+//         return acc.concat(cur.idPlace);
+//       }, []);
+
+//       console.log(
+//         '%c These are the idPlaces created in db: ',
+//         'color: blue; font-size: 16px',
+//         idPlaces
+//       );
+
+//       return this.setState({
+//         currentPlace: idPlaces[0],
+//         places: idPlaces
+//       });
+//     })
+//     .done(() => {
+//       this.getReviewsByPlace(this.state.currentPlace);
+//       this.getRatingsByPlace(this.state.currentPlace);
+//     });
+// }

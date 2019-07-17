@@ -8,7 +8,7 @@ const {
   searchReviews
 } = require('../database/controllers.js')
 
-app.use('/rooms/:id',express.static('public'))
+app.use('/:id',express.static('public'))
 
 // // Get all idPlaces
 app.get('/api/places', (req, res) => {
