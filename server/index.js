@@ -2,25 +2,12 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3003
 const {
-  getAllPlaces,
   getReviewsById,
   getRatingsById,
   searchReviews
 } = require('../database/controllers.js')
 
 app.use('/:id',express.static('public'))
-
-// // Get all idPlaces
-app.get('/api/places', (req, res) => {
-  getAllPlaces((err, places) => {
-    if(err){
-      console.log(err)
-    }
-    else {
-      res.send(places)
-    }
-  })
-})
 
 // Get all the reviews for a specific place
 app.get('/reviews/:idPlace', (req, res) => {
