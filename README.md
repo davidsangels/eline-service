@@ -36,7 +36,6 @@ From within the root directory:
 
 - After clonning this repo, command `npm install`.
 - To generate data in database, command `npm run seed`.
-  If database is not been created: create database manually inside mysql env. To seed generator works correctly, the database name must be `airbnb`.
 - To run tests for front-end (react components), command `npm run test`.
 - For initialize server, command `npm start`. Configured to run automatically when changes are detected.
 

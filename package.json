@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "seed": "node database/seed.js",
+    "seed": "mysql -u root < database/schema.sql && node database/seed.js",
     "test": "jest --watch",
     "dev-react": "webpack -d --watch",
     "lint": "./node_modules/.bin/eslint client"
