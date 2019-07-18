@@ -3,9 +3,10 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize(
   'airbnb',
   'root',
-  '',
+  'root',
   {
-    host: 'localhost',
+    // this host value is equivalent of what is exposed in IPv4 adress of docker container
+    host: '172.17.0.2',
     dialect: 'mysql',
   }
 )
