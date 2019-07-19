@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start-dev": "nodemon server/index.js",
-    "start": "node server/index.js",
+    "start-docker": "npm run seed && node server/index.js",
     "seed": "node database/seed.js",
     "test": "jest --watch",
     "dev-react": "webpack -d --watch",

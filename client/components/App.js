@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const idPlace = Number(location.pathname.slice(1, -1));
+    const idPlace = Number(window.location.pathname.slice(1, -1));
     this.getReviewsByPlace(idPlace);
     this.getRatingsByPlace(idPlace);
     this.setState({
