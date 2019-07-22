@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlace: null,
+      currentPlace: Number(window.location.pathname.slice(1, -1)),
       reviewsByPlace: [],
       ratingsByPlace: [],
       textSearch: '',
@@ -26,12 +26,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const idPlace = Number(window.location.pathname.slice(1, -1));
-    this.getReviewsByPlace(idPlace);
-    this.getRatingsByPlace(idPlace);
-    this.setState({
-      currentPlace: idPlace
-    });
+    const {currentPlace} = this.state
+    this.getReviewsByPlace(currentPlace);
+    this.getRatingsByPlace(currentPlace);
   }
 
   getReviewsByPlace(id) {
@@ -39,11 +36,11 @@ class App extends React.Component {
       type: 'GET',
       url: `/reviews/${id}`
     })
-      .done(data => {
-        return this.setState({
+      .done(data => (
+        this.setState({
           reviewsByPlace: data
-        });
-      });
+        })
+      ));
   }
 
   getRatingsByPlace(id) {
@@ -51,11 +48,11 @@ class App extends React.Component {
       type: 'GET',
       url: `/reviews/ratings/${id}`
     })
-      .done(data => {
-        return this.setState({
+      .done(data => (
+        this.setState({
           ratingsByPlace: data.reduce(cur => cur)
-        });
-      });
+        })
+      ));
   }
 
   handleChangeInput(e) {
@@ -138,7 +135,7 @@ class App extends React.Component {
       </React.Fragment>
     );
 
-    const notFoundPage = () => (
+    const pageNotFound = () => (
       <div className='not-found'>
         Sorry!  =(
         <br />
@@ -150,8 +147,8 @@ class App extends React.Component {
 
     return (
       <div className='app'>
-        {![1, 2, 3, 4, 5].includes(currentPlace) && notFoundPage()}
-        {currentPlace !== 'null' && (
+        {![1, 2, 3, 4, 5].includes(currentPlace) && pageNotFound()}
+        {reviewsByPlace.length > 0 && (
           <div>
             <div className='header'>
               <div className='numReviews'>

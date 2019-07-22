@@ -7,13 +7,23 @@ class Review extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showMoreText: false
+      showMoreText: false,
+      avatarUrl: null
     };
+    this.handleLoad = this.handleLoad.bind(this)
+  }
+
+  handleLoad(){
+    this.setState(state => {
+      return {
+        avatarUrl: this.props.review.avatarUrl
+      }
+    })
   }
 
   render() {
     const { review } = this.props;
-    const { showMoreText } = this.state;
+    const { showMoreText, avatarUrl } = this.state;
     const createdAt = moment(review.createdAt).format('MMMM YYYY');
     const text = review.text.charAt(0).toUpperCase() + review.text.slice(1);
 
@@ -26,6 +36,8 @@ class Review extends React.Component {
               height="50"
               width="50"
               className='img-avatar'
+              onLoad={() => this.handleLoad()}
+              key={avatarUrl}
             />
             <div className='userInfo'>
               <div className='userName'>
