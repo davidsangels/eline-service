@@ -6,9 +6,9 @@ const sequelize = new Sequelize(
   // '',
   'root',
   {
-    // this host value is equivalent of what is exposed in IPv4 adress of docker container
-    // host: 'localhost',
-    host: '172.17.0.2',
+    host: 'localhost',
+    // the host value below is exposed in IPv4 adress of docker container
+    // host: '172.17.0.2',
     dialect: 'mysql',
   }
 )

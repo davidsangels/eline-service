@@ -6,13 +6,13 @@ const Star = (type, index) => {
   const getStyle = () => {
     if (type === 'filled') {
       // green color of airbnb star rating
-      return {fill: '#008489', fontSize: '24px'};
+      return {color: '#008489', fontSize: '24px'};
     } else if (type === 'partialFilled') {
       // TODO: fill with the value of partialFilled
-      return {fill: '#008489', fontSize: '24px'};
+      return {color: '#008489', fontSize: '24px'};
     } else {
       // grey color of airbnb star rating (similar)
-      return {fill: '#CECBCB', fontSize: '24px'};
+      return {color: '#CECBCB', fontSize: '24px'};
     }
   };
 

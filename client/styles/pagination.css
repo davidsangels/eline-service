@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+button {
+  outline: none;
+}
+
 .activeBtn {
   display: inline-block;
   width: 32px;

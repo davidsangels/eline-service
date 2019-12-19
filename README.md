@@ -7,9 +7,9 @@ This project builds a similar reviews module of Airbnb's item page.
 
 ## Usage
 
-> Some usage instructions
-This module works with idPlaces from 1 to 5.
-Just need to change the number in the url.
+> Some usage instructions:
+> This module works with idPlaces from 1 to 5.
+> Just need to change the number in the url.
 
 ### Installing Dependencies
 

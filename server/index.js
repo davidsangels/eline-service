@@ -6,7 +6,6 @@ const {
   getRatingsById,
   searchReviews
 } = require('../database/controllers.js')
-const seedDB = require('../database/seed.js')
 
 app.use('/:id',express.static('public'))
 
